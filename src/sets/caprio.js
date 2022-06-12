@@ -1,25 +1,25 @@
-import caprioAiaiaiAudio from "./assets/sounds/caprio/caprio-aiaiaiaiaia.mp3";
-import caprioBtvAudio from "./assets/sounds/caprio/caprio-btv.mp3";
-import caprioDesgracadoAudio from "./assets/sounds/caprio/caprio-desgracado.mp3";
-import caprioEhIssoQueCEhAudio from "./assets/sounds/caprio/caprio-eh-isso-q-c-eh.mp3";
-import caprioEuCaiNoPauAudio from "./assets/sounds/caprio/caprio-eu-cai-no-pau.mp3";
-import caprioEuOdeioOColonoAudio from "./assets/sounds/caprio/caprio-eu-odeio-o-colono.mp3";
-import caprioFakeIntroHayaAudio from "./assets/sounds/caprio/caprio-fake-intro-haya.mp3";
-import caprioFaltouKYAudio from "./assets/sounds/caprio/caprio-faltou-k-y.mp3";
-import caprioFDPAudio from "./assets/sounds/caprio/caprio-fdp.mp3";
-import caprioGemidoAudio from "./assets/sounds/caprio/caprio-gemido.mp3";
-import caprioJogaOAlhoAudio from "./assets/sounds/caprio/caprio-joga-o-alho.mp3";
-import caprioMamadaAudio from "./assets/sounds/caprio/caprio-mamada.mp3";
-import caprioMamadaAltAudio from "./assets/sounds/caprio/caprio-mamada_alt.mp3";
-import caprioMeterTudoDeUmaVezAudio from "./assets/sounds/caprio/caprio-meter-tudo-de-uma-vez.mp3";
-import caprioPNCAudio from "./assets/sounds/caprio/caprio-pnc.mp3";
-import caprioVaiTomarNoCuAudio from "./assets/sounds/caprio/caprio-vai-toma-no-cu.mp3";
-import caprioVaivaivaiAudio from "./assets/sounds/caprio/caprio-vaivaivai.mp3";
-import caprioVontadePicaCuAudio from "./assets/sounds/caprio/caprio-vontade-pica-cu.mp3";
+import caprioAiaiaiAudio from "../assets/sounds/caprio/caprio-aiaiaiaiaia.mp3";
+import caprioBtvAudio from "../assets/sounds/caprio/caprio-btv.mp3";
+import caprioDesgracadoAudio from "../assets/sounds/caprio/caprio-desgracado.mp3";
+import caprioEhIssoQueCEhAudio from "../assets/sounds/caprio/caprio-eh-isso-q-c-eh.mp3";
+import caprioEuCaiNoPauAudio from "../assets/sounds/caprio/caprio-eu-cai-no-pau.mp3";
+import caprioEuOdeioOColonoAudio from "../assets/sounds/caprio/caprio-eu-odeio-o-colono.mp3";
+import caprioFakeIntroHayaAudio from "../assets/sounds/caprio/caprio-fake-intro-haya.mp3";
+import caprioFaltouKYAudio from "../assets/sounds/caprio/caprio-faltou-k-y.mp3";
+import caprioFDPAudio from "../assets/sounds/caprio/caprio-fdp.mp3";
+import caprioGemidoAudio from "../assets/sounds/caprio/caprio-gemido.mp3";
+import caprioJogaOAlhoAudio from "../assets/sounds/caprio/caprio-joga-o-alho.mp3";
+import caprioMamadaAudio from "../assets/sounds/caprio/caprio-mamada.mp3";
+import caprioMamadaAltAudio from "../assets/sounds/caprio/caprio-mamada_alt.mp3";
+import caprioMeterTudoDeUmaVezAudio from "../assets/sounds/caprio/caprio-meter-tudo-de-uma-vez.mp3";
+import caprioPNCAudio from "../assets/sounds/caprio/caprio-pnc.mp3";
+import caprioVaiTomarNoCuAudio from "../assets/sounds/caprio/caprio-vai-toma-no-cu.mp3";
+import caprioVaivaivaiAudio from "../assets/sounds/caprio/caprio-vaivaivai.mp3";
+import caprioVontadePicaCuAudio from "../assets/sounds/caprio/caprio-vontade-pica-cu.mp3";
 
 export default {
   userName: "Caprio",
-  image: require("./assets/images/caprio.png"),
+  image: require("../assets/images/caprio.png"),
   sounds: [
     {
       source: caprioJogaOAlhoAudio,

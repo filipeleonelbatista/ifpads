@@ -14,7 +14,7 @@ import funky from "./funky";
 import jeff from "./jeff";
 import kadok from "./kadok";
 
-export const Pads = [
+export default [
   thiagod,
   hayashii,
   batera,

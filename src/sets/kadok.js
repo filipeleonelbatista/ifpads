@@ -1,8 +1,8 @@
-import kadokLegalAudio from "./assets/sounds/kadok/kadok-legal.mp3";
+import kadokLegalAudio from "../assets/sounds/kadok/kadok-legal.mp3";
 
 export default {
   userName: "Kadok",
-  image: require("./assets/images/kadok.png"),
+  image: require("../assets/images/kadok.png"),
   sounds: [
     {
       source: kadokLegalAudio,

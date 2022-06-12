@@ -1,11 +1,11 @@
-import adolferaAproveitaEVaiTomarNoCuTbmAudio from "./assets/sounds/adolfz/adolfz-aproveita-e-vai-toma-no-cu-tbm.mp3";
-import adolferaMeteOPeDaLiveAudio from "./assets/sounds/adolfz/adolfz-mete-o-pe-da-live.mp3";
-import adolferaPrivacidadeAudio from "./assets/sounds/adolfz/adolfz-privacidade.mp3";
-import adolferaTecnologiaDeMerdaAudio from "./assets/sounds/adolfz/adolfz-tecnologia-de-merda.mp3";
+import adolferaAproveitaEVaiTomarNoCuTbmAudio from "../assets/sounds/adolfz/adolfz-aproveita-e-vai-toma-no-cu-tbm.mp3";
+import adolferaMeteOPeDaLiveAudio from "../assets/sounds/adolfz/adolfz-mete-o-pe-da-live.mp3";
+import adolferaPrivacidadeAudio from "../assets/sounds/adolfz/adolfz-privacidade.mp3";
+import adolferaTecnologiaDeMerdaAudio from "../assets/sounds/adolfz/adolfz-tecnologia-de-merda.mp3";
 
 export default {
   userName: "Adolfera",
-  image: require("./assets/images/adolfera.jpg"),
+  image: require("../assets/images/adolfera.jpg"),
   sounds: [
     {
       source: adolferaAproveitaEVaiTomarNoCuTbmAudio,

@@ -1,12 +1,12 @@
-import leEuToDormindoCaraAudio from "./assets/sounds/le/le-eu-to-dormindo-cara.mp3";
-import leEuToDormindoVelhoAudio from "./assets/sounds/le/le-eu-to-dormindo-velho.mp3";
-import leCuDoStolenAudio from "./assets/sounds/le/le-o-cu-do-stolen.mp3";
-import leVontadeDeCagarAudio from "./assets/sounds/le/le-vontade-de-cagar.mp3";
-import leVouDeCagarAudio from "./assets/sounds/le/le-vou-cagar.mp3";
+import leEuToDormindoCaraAudio from "../assets/sounds/le/le-eu-to-dormindo-cara.mp3";
+import leEuToDormindoVelhoAudio from "../assets/sounds/le/le-eu-to-dormindo-velho.mp3";
+import leCuDoStolenAudio from "../assets/sounds/le/le-o-cu-do-stolen.mp3";
+import leVontadeDeCagarAudio from "../assets/sounds/le/le-vontade-de-cagar.mp3";
+import leVouDeCagarAudio from "../assets/sounds/le/le-vou-cagar.mp3";
 
 export default {
   userName: "Lê",
-  image: require("./assets/images/leticia.jpg"),
+  image: require("../assets/images/leticia.jpg"),
   sounds: [
     {
       source: leEuToDormindoCaraAudio,
