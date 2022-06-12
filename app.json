@@ -2,7 +2,7 @@
   "expo": {
     "name": "IF Pads",
     "slug": "if-pads",
-    "version": "1.0.1",
+    "version": "1.0.2",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "userInterfaceStyle": "light",
@@ -21,7 +21,7 @@
       },
       "supportsTablet": true,
       "bundleIdentifier": "com.instinctfamily.ifpads",
-      "buildNumber": "1.0.1"
+      "buildNumber": "1.0.2"
     },
     "android": {
       "permissions": [
@@ -37,7 +37,7 @@
         "backgroundColor": "#FFFFFF"
       },
       "package": "com.instinctfamily.ifpads",
-      "versionCode": 3
+      "versionCode": 4
     },
     "web": {
       "favicon": "./assets/favicon.png"
