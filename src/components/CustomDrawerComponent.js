@@ -3,16 +3,16 @@ import { DrawerContentScrollView } from "@react-navigation/drawer";
 import { Alert, Image, ImageBackground, Share, Text, View } from "react-native";
 import { TouchableOpacity } from "react-native-gesture-handler";
 import { useAudioContext } from "../hooks/useAudioContext";
-import Clipboard from "@react-native-clipboard/clipboard";
+import * as Clipboard from "expo-clipboard";
 
 export default function CustomDrawerComponent(props) {
   const { pads, selectedPad, loadPreset } = useAudioContext();
 
   const handlePix = () => {
-    Clipboard.setString(
+    Clipboard.setStringAsync(
       "00020126580014BR.GOV.BCB.PIX013649b3aa64-47eb-47a3-b439-b765a4d0f22c5204000053039865802BR5925FILIPE DE LEONEL BATISTA 6009SAO PAULO61080540900062250521hGjPosyoJ4dswj614vgvd63046514"
     );
-    Alert(
+    Alert.alert(
       "Chave Pix Copiada",
       "Agora basta ir no app do seu banco favorito e fazer um pix em qualquer valor 😉"
     );
@@ -25,7 +25,7 @@ export default function CustomDrawerComponent(props) {
           "Gostei deste app de pads da IF, da uma olhada ae: https://google.com.br",
       });
     } catch (error) {
-      Alert(
+      Alert.alert(
         "Erro ao compartilhar",
         "Houve um problema ao tentar compartilhar o conteudo"
       );

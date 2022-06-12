@@ -16,35 +16,20 @@
     },
     "assetBundlePatterns": ["**/*"],
     "ios": {
-      "config": {
-        "googleMobileAdsAppId": "ca-app-pub-7791002101264737~2869131296"
-      },
       "supportsTablet": true,
       "bundleIdentifier": "com.instinctfamily.ifpads",
       "buildNumber": "1.0.2"
     },
     "android": {
-      "permissions": [
-        "ACCESS_BACKGROUND_LOCATION",
-        "ACCESS_FINE_LOCATION",
-        "ACCESS_COARSE_LOCATION"
-      ],
-      "config": {
-        "googleMobileAdsAppId": "ca-app-pub-7791002101264737~2869131296"
-      },
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#FFFFFF"
       },
       "package": "com.instinctfamily.ifpads",
-      "versionCode": 4
+      "versionCode": 6
     },
     "web": {
       "favicon": "./assets/favicon.png"
     }
-  },
-  "react-native-google-mobile-ads": {
-    "android_app_id": "ca-app-pub-7791002101264737~2869131296",
-    "ios_app_id": "ca-app-pub-7791002101264737~2869131296"
   }
 }
