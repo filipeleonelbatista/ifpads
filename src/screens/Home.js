@@ -58,10 +58,21 @@ export default function Home({ navigation }) {
           <Text style={styles.headerTextValue}>{selectedPad.userName} </Text>
         </View>
         <TouchableOpacity
+          accessible={true}
+          accessibilityLabel={"Botão para abrir o menu lateral de opções!"}
+          accessibilityTraits={"button"}
+          accessibilityComponentType={"button"}
+          accessibilityViewIsModal={true}
+          accessibilityElementsHidden={true}
           onPress={() => navigation.toggleDrawer()}
           style={styles.imageTouchable}
         >
-          <Image source={selectedPad.image} style={styles.imageTitle} />
+          <Image
+            accessible={true}
+            accessibilityLabel={selectedPad.userName + " logo"}
+            source={selectedPad.image}
+            style={styles.imageTitle}
+          />
         </TouchableOpacity>
       </View>
 

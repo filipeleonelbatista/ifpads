@@ -20,11 +20,6 @@ export default {
       empty: false,
     },
     {
-      source: bateraAVaiSeFuderAudio,
-      title: "Ah Vai, Vai se foder",
-      empty: false,
-    },
-    {
       source: bateraAiEhTristeAudio,
       title: "Ai é triste",
       empty: false,

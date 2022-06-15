@@ -22,7 +22,7 @@ export default function CustomDrawerComponent(props) {
     try {
       const result = await Share.share({
         message:
-          "Gostei deste app de pads da IF, da uma olhada ae: https://google.com.br",
+          "Gostei deste app de pads da IF, da uma olhada ae: https://play.google.com/store/apps/details?id=com.instinctfamily.ifpads",
       });
     } catch (error) {
       Alert.alert(
@@ -44,10 +44,16 @@ export default function CustomDrawerComponent(props) {
         contentContainerStyle={{ backgroundColor: "#101010" }}
       >
         <ImageBackground
+          accessible={true}
+          accessibilityLabel={
+            "Logo com as letras I F e Pads escrito em baixo do F em laranja"
+          }
           style={{ padding: 20 }}
           source={require("../assets/images/banner.png")}
         >
           <Image
+            accessible={true}
+            accessibilityLabel={selectedPad.userName + " logo"}
             source={selectedPad.image}
             style={{
               width: 80,
@@ -65,6 +71,12 @@ export default function CustomDrawerComponent(props) {
             return (
               <TouchableOpacity
                 keu={index}
+                accessible={true}
+                accessibilityLabel={"Selecione os audios do " + pad.userName}
+                accessibilityTraits={"button"}
+                accessibilityComponentType={"button"}
+                accessibilityViewIsModal={true}
+                accessibilityElementsHidden={true}
                 onPress={() => {
                   loadPreset(pad);
                   props.navigation.toggleDrawer();
@@ -82,6 +94,8 @@ export default function CustomDrawerComponent(props) {
               >
                 <View style={{ flexDirection: "row", alignItems: "center" }}>
                   <Image
+                    accessible={true}
+                    accessibilityLabel={pad.userName + " logo"}
                     source={pad.image}
                     style={{
                       width: 24,
@@ -97,13 +111,33 @@ export default function CustomDrawerComponent(props) {
         </View>
       </DrawerContentScrollView>
       <View style={{ padding: 20, borderTopWidth: 1, borderTopColor: "#CCC" }}>
-        <TouchableOpacity onPress={handleShare} style={{ paddingVertical: 15 }}>
+        <TouchableOpacity
+          accessible={true}
+          accessibilityLabel={"Botão para compartilhar com os amigos o app!"}
+          accessibilityTraits={"button"}
+          accessibilityComponentType={"button"}
+          accessibilityViewIsModal={true}
+          accessibilityElementsHidden={true}
+          onPress={handleShare}
+          style={{ paddingVertical: 15 }}
+        >
           <View style={{ flexDirection: "row", alignItems: "center" }}>
             <Ionicons name="share-social-outline" size={22} />
             <Text style={{ marginLeft: 10 }}>Compartilhe com amigos</Text>
           </View>
         </TouchableOpacity>
-        <TouchableOpacity onPress={handlePix} style={{ paddingVertical: 15 }}>
+        <TouchableOpacity
+          accessible={true}
+          accessibilityLabel={
+            "Botão para copiar a chave pix para fazer uma doação!"
+          }
+          accessibilityTraits={"button"}
+          accessibilityComponentType={"button"}
+          accessibilityViewIsModal={true}
+          accessibilityElementsHidden={true}
+          onPress={handlePix}
+          style={{ paddingVertical: 15 }}
+        >
           <View style={{ flexDirection: "row", alignItems: "center" }}>
             <FontAwesome name="qrcode" size={22} color="black" />
             <Text style={{ marginLeft: 10 }}>Me pague um pastel 😉</Text>
