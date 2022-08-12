@@ -35,14 +35,22 @@ export default function MyPadScreen({ navigation }) {
   }
 
   async function handleOnSave() {
+    const newPad = {
+      userName: "Meu Pad",
+      image: require("../assets/images/user.png"),
+      sounds: []
+    }
+
     const myPad = {
+      ...newPad,
       userName: padName,
       image: selectedImage,
       sounds: [...soundList]
     }
-    await AsyncStorage.setItem('@my_pad', JSON.stringify(myPad))
+    await AsyncStorage.setItem('@my_pad', JSON.stringify(myPad))    
 
     const padList = [
+      ...value,
       myPad,
       ...Pads
     ]
