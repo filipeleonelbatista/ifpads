@@ -13,6 +13,9 @@ import bodao from "./bodao";
 import funky from "./funky";
 import jeff from "./jeff";
 import kadok from "./kadok";
+import marginal from "./marginal";
+import pirata from "./pirata";
+import vandep from "./vandep";
 
 export default [
   thiagod,
@@ -30,4 +33,7 @@ export default [
   funky,
   jeff,
   kadok,
+  marginal,
+  pirata,
+  vandep
 ];

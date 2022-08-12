@@ -7,6 +7,15 @@ import jeffQueIssoAudio from "../assets/sounds/jeff/jeff-que-isso.mp3";
 import jeffRisadaAudio from "../assets/sounds/jeff/jeff-risada-crab-game.mp3";
 import jeffTamalucoAudio from "../assets/sounds/jeff/jeff-tamaluco.mp3";
 import jeffTemQDarAudio from "../assets/sounds/jeff/jeff-tem-que-da.mp3";
+import jeffeusouamareloAudio from "../assets/sounds/jeff/eusouamarelo.mp3";
+import jeffhaAudio from "../assets/sounds/jeff/ha.mp3";
+import jeffjadeileAudio from "../assets/sounds/jeff/jadeile.mp3";
+import jeffahmanoAudio from "../assets/sounds/jeff/jeff-ah-mano.mp3";
+import jeffamareloAudio from "../assets/sounds/jeff/jeff-amarelo2.mp3";
+import jeffvermelhoAudio from "../assets/sounds/jeff/jeff-vermelho.mp3";
+import jefffffAudio from "../assets/sounds/jeff/jeffff.mp3";
+import jeffrisadajeffesponjaAudio from "../assets/sounds/jeff/risadajeffesponja.mp3";
+import jeffvoudarnatuacaraAudio from "../assets/sounds/jeff/voudarnatuacara.mp3";
 
 export default {
   userName: "Jefff",
@@ -55,6 +64,51 @@ export default {
     {
       source: jeffTemQDarAudio,
       title: "Tem que dar",
+      empty: false,
+    },
+    {
+      source: jeffeusouamareloAudio,
+      title: "Sou amarelo",
+      empty: false,
+    },
+    {
+      source: jeffhaAudio,
+      title: "Ah",
+      empty: false,
+    },
+    {
+      source: jeffjadeileAudio,
+      title: "Ja deile",
+      empty: false,
+    },
+    {
+      source: jeffahmanoAudio,
+      title: "Ah mano",
+      empty: false,
+    },
+    {
+      source: jeffamareloAudio,
+      title: "Amarelo",
+      empty: false,
+    },
+    {
+      source: jeffvermelhoAudio,
+      title: "Vermelho",
+      empty: false,
+    },
+    {
+      source: jefffffAudio,
+      title: "O GTA começa as 22",
+      empty: false,
+    },
+    {
+      source: jeffrisadajeffesponjaAudio,
+      title: "Risada esponja",
+      empty: false,
+    },
+    {
+      source: jeffvoudarnatuacaraAudio,
+      title: "Vou dar na tua cara",
       empty: false,
     },
   ],

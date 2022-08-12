@@ -2,6 +2,10 @@ import adolferaAproveitaEVaiTomarNoCuTbmAudio from "../assets/sounds/adolfz/adol
 import adolferaMeteOPeDaLiveAudio from "../assets/sounds/adolfz/adolfz-mete-o-pe-da-live.mp3";
 import adolferaPrivacidadeAudio from "../assets/sounds/adolfz/adolfz-privacidade.mp3";
 import adolferaTecnologiaDeMerdaAudio from "../assets/sounds/adolfz/adolfz-tecnologia-de-merda.mp3";
+import adolferaAnaoAudio from "../assets/sounds/adolfz/ah-nao.mp3";
+import adolferaEuVouMijarAudio from "../assets/sounds/adolfz/eu-vou-mijar.mp3";
+import adolferaIdeiaAudio from "../assets/sounds/adolfz/ideia-maravilhosa-adolfera.mp3";
+import adolferaVaiChorarSoseteAudio from "../assets/sounds/adolfz/vai-chorar-so7-by-adolfera.mp3";
 
 export default {
   userName: "Adolfera",
@@ -25,6 +29,26 @@ export default {
     {
       source: adolferaTecnologiaDeMerdaAudio,
       title: "Tecnologia de merda",
+      empty: false,
+    },
+    {
+      source: adolferaAnaoAudio,
+      title: "Ah não",
+      empty: false,
+    },
+    {
+      source: adolferaEuVouMijarAudio,
+      title: "Eu vou mijar",
+      empty: false,
+    },
+    {
+      source: adolferaIdeiaAudio,
+      title: "Ideia maravilhosa",
+      empty: false,
+    },
+    {
+      source: adolferaVaiChorarSoseteAudio,
+      title: "Vai chorar So7",
       empty: false,
     },
   ],

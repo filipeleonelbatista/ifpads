@@ -3,6 +3,8 @@ import leEuToDormindoVelhoAudio from "../assets/sounds/le/le-eu-to-dormindo-velh
 import leCuDoStolenAudio from "../assets/sounds/le/le-o-cu-do-stolen.mp3";
 import leVontadeDeCagarAudio from "../assets/sounds/le/le-vontade-de-cagar.mp3";
 import leVouDeCagarAudio from "../assets/sounds/le/le-vou-cagar.mp3";
+import leclipeAudio from "../assets/sounds/le/le-clipe.mp3";
+import lenaofoisemquererAudio from "../assets/sounds/le/NAo_foi_sem_querer.mp3";
 
 export default {
   userName: "Lê",
@@ -31,6 +33,16 @@ export default {
     {
       source: leVouDeCagarAudio,
       title: "Vou Cagar",
+      empty: false,
+    },
+    {
+      source: leclipeAudio,
+      title: "Clipa",
+      empty: false,
+    },
+    {
+      source: lenaofoisemquererAudio,
+      title: "Não foi sem querer",
       empty: false,
     },
   ],

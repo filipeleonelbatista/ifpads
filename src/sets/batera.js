@@ -9,6 +9,16 @@ import bateraPassaSeuCuAudio from "../assets/sounds/batera/batera-passa-seu-cu.m
 import bateraChuparNaFrenteDosOutrosAudio from "../assets/sounds/batera/batera-so-nao-pode-chupar-na-frente-dos-outros.mp3";
 import bateraVaiChupandoAudio from "../assets/sounds/batera/batera-vai-chupando.mp3";
 import bateraVoceTavaMoleAudio from "../assets/sounds/batera/batera-voce-tava-mole.mp3";
+import bateraApareceuUmaPirocaAudio from "../assets/sounds/batera/apareceuumapiroca.mp3";
+import bateraVouDarOCuAudio from "../assets/sounds/batera/batera-voudarocu.mp3";
+import bateraCalmaAudio from "../assets/sounds/batera/calma_calma.mp3";
+import bateraEuOlheiPraPirocaAudio from "../assets/sounds/batera/euolheiprapiroca.mp3";
+import bateraEuViAPirocaAquiAudio from "../assets/sounds/batera/euviapirocaaqui.mp3";
+import bateraDiadebostaAudio from "../assets/sounds/batera/Hoje_e_um_dia_de_bostaaaa2.mp3";
+import bateraNaoToPutoAudio from "../assets/sounds/batera/nao-to-puto.mp3";
+import bateraNaoQueroNadaAudio from "../assets/sounds/batera/naoqueronada.mp3";
+import bateraNegoERuimAudio from "../assets/sounds/batera/negoeruim-batera.mp3";
+import bateraVaiChupanoAudio from "../assets/sounds/batera/vaichupano.mp3";
 
 export default {
   userName: "Batora",
@@ -67,6 +77,56 @@ export default {
     {
       source: bateraVoceTavaMoleAudio,
       title: "Você tava mole",
+      empty: false,
+    },
+    {
+      source: bateraApareceuUmaPirocaAudio,
+      title: "Apareceu uma piroca",
+      empty: false,
+    },
+    {
+      source: bateraVouDarOCuAudio,
+      title: "Vou dar o cu",
+      empty: false,
+    },
+    {
+      source: bateraCalmaAudio,
+      title: "Calma!",
+      empty: false,
+    },
+    {
+      source: bateraEuOlheiPraPirocaAudio,
+      title: "Eu olhei pra piroca",
+      empty: false,
+    },
+    {
+      source: bateraEuViAPirocaAquiAudio,
+      title: "Eu vi a piroca aqui",
+      empty: false,
+    },
+    {
+      source: bateraDiadebostaAudio,
+      title: "Dia de bosta",
+      empty: false,
+    },
+    {
+      source: bateraNaoToPutoAudio,
+      title: "Não to puto",
+      empty: false,
+    },
+    {
+      source: bateraNaoQueroNadaAudio,
+      title: "Não quero nada",
+      empty: false,
+    },
+    {
+      source: bateraNegoERuimAudio,
+      title: "Nego é ruim",
+      empty: false,
+    },
+    {
+      source: bateraVaiChupanoAudio,
+      title: "Vai chupando",
       empty: false,
     },
   ],

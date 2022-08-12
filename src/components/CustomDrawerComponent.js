@@ -1,37 +1,16 @@
-import { FontAwesome, Ionicons } from "@expo/vector-icons";
+import { FontAwesome } from "@expo/vector-icons";
 import { DrawerContentScrollView } from "@react-navigation/drawer";
 import { Alert, Image, ImageBackground, Share, Text, View } from "react-native";
 import { TouchableOpacity } from "react-native-gesture-handler";
 import { useAudioContext } from "../hooks/useAudioContext";
-import * as Clipboard from "expo-clipboard";
 
 export default function CustomDrawerComponent(props) {
   const { pads, selectedPad, loadPreset } = useAudioContext();
 
-  const handlePix = () => {
-    Clipboard.setStringAsync(
-      "00020126580014BR.GOV.BCB.PIX013649b3aa64-47eb-47a3-b439-b765a4d0f22c5204000053039865802BR5925FILIPE DE LEONEL BATISTA 6009SAO PAULO61080540900062250521hGjPosyoJ4dswj614vgvd63046514"
-    );
-    Alert.alert(
-      "Chave Pix Copiada",
-      "Agora basta ir no app do seu banco favorito e fazer um pix em qualquer valor 😉"
-    );
-  };
-
-  const handleShare = async () => {
-    try {
-      const result = await Share.share({
-        message:
-          "Gostei deste app de pads da IF, da uma olhada ae: https://play.google.com/store/apps/details?id=com.instinctfamily.ifpads",
-      });
-    } catch (error) {
-      Alert.alert(
-        "Erro ao compartilhar",
-        "Houve um problema ao tentar compartilhar o conteudo"
-      );
-      console.error(error.message);
-    }
-  };
+  const handleNavigate = () => {
+    props.navigation.navigate("ConfigScreen");
+    props.navigation.closeDrawer();
+  }
 
   if (!pads || !selectedPad) {
     return <Text>Carregando... </Text>;
@@ -70,7 +49,7 @@ export default function CustomDrawerComponent(props) {
           {pads.map((pad, index) => {
             return (
               <TouchableOpacity
-                keu={index}
+                key={index}
                 accessible={true}
                 accessibilityLabel={"Selecione os audios do " + pad.userName}
                 accessibilityTraits={"button"}
@@ -79,7 +58,8 @@ export default function CustomDrawerComponent(props) {
                 accessibilityElementsHidden={true}
                 onPress={() => {
                   loadPreset(pad);
-                  props.navigation.toggleDrawer();
+                  props.navigation.navigate("Home");
+                  props.navigation.closeDrawer();
                 }}
                 style={{
                   padding: 15,
@@ -110,37 +90,28 @@ export default function CustomDrawerComponent(props) {
           })}
         </View>
       </DrawerContentScrollView>
-      <View style={{ padding: 20, borderTopWidth: 1, borderTopColor: "#CCC" }}>
-        <TouchableOpacity
-          accessible={true}
-          accessibilityLabel={"Botão para compartilhar com os amigos o app!"}
-          accessibilityTraits={"button"}
-          accessibilityComponentType={"button"}
-          accessibilityViewIsModal={true}
-          accessibilityElementsHidden={true}
-          onPress={handleShare}
-          style={{ paddingVertical: 15 }}
-        >
-          <View style={{ flexDirection: "row", alignItems: "center" }}>
-            <Ionicons name="share-social-outline" size={22} />
-            <Text style={{ marginLeft: 10 }}>Compartilhe com amigos</Text>
-          </View>
-        </TouchableOpacity>
+      <View style={{ padding: 4, borderTopWidth: 1, borderTopColor: "#CCC" }}>
         <TouchableOpacity
           accessible={true}
           accessibilityLabel={
-            "Botão para copiar a chave pix para fazer uma doação!"
+            "Criar seu pad"
           }
           accessibilityTraits={"button"}
           accessibilityComponentType={"button"}
           accessibilityViewIsModal={true}
           accessibilityElementsHidden={true}
-          onPress={handlePix}
-          style={{ paddingVertical: 15 }}
+          onPress={handleNavigate}
+          style={{
+            padding: 15,
+            marginHorizontal: 12,
+            marginVertical: 2,
+            borderRadius: 8,
+            backgroundColor: "transparent"
+          }}
         >
           <View style={{ flexDirection: "row", alignItems: "center" }}>
-            <FontAwesome name="qrcode" size={22} color="black" />
-            <Text style={{ marginLeft: 10 }}>Me pague um pastel 😉</Text>
+            <FontAwesome name="cog" size={22} color="black" />
+            <Text style={{ marginLeft: 10 }}>Criar seu pad</Text>
           </View>
         </TouchableOpacity>
       </View>

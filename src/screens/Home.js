@@ -17,7 +17,7 @@ import { useAudioContext } from "../hooks/useAudioContext";
 const numColumns = 4;
 
 export default function Home({ navigation }) {
-  const { selectedPad, playSound } = useAudioContext();
+  const { selectedPad, playSound, padColor, padTextColor } = useAudioContext();
 
   const renderItem = ({ item, index }) => {
     if (item.empty) {
@@ -29,9 +29,9 @@ export default function Home({ navigation }) {
           onPress={() => {
             playSound(item.source);
           }}
-          style={styles.button}
+          style={[styles.button, { backgroundColor: padColor }]}
         >
-          <Text>{item.title}</Text>
+          <Text style={{ color: padTextColor }}>{item.title}</Text>
         </TouchableOpacity>
       );
     }
@@ -75,13 +75,24 @@ export default function Home({ navigation }) {
           />
         </TouchableOpacity>
       </View>
+      {
+        selectedPad.sounds.length > 0
+          ? (
+            <FlatList
+              style={styles.gridContainer}
+              data={selectedPad.sounds}
+              renderItem={renderItem}
+              numColumns={numColumns}
+            />
+          ) : (
+            <View
+              style={{ flex: 1, alignItems: 'center', justifyContent: 'center', width: "100%" }}
+            >
+              <Text style={[styles.headerTextValue, {width: "100%", textAlign: 'center'}]}>Este pad não possui sons ainda.</Text>
+            </View>
+          )
 
-      <FlatList
-        style={styles.gridContainer}
-        data={selectedPad.sounds}
-        renderItem={renderItem}
-        numColumns={numColumns}
-      />
+      }
     </SafeAreaView>
   );
 }
@@ -160,7 +171,6 @@ const styles = StyleSheet.create({
     width: Dimensions.get("window").width,
   },
   button: {
-    backgroundColor: "red",
     alignItems: "center",
     justifyContent: "center",
     flex: 1,
