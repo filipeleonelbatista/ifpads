@@ -12,11 +12,19 @@ import {
   View
 } from "react-native";
 import { Button } from "../components/Button";
-import { Input } from "../components/Input";
 
 import * as Clipboard from "expo-clipboard";
-import { useAudioContext } from "../hooks/useAudioContext";
 import { useState } from "react";
+import { useAudioContext } from "../hooks/useAudioContext";
+
+const colors = [
+  "#FFFFFF",
+  "#000000",
+  "#FF0000",
+  "#FFFF00",
+  "#00FFFF",
+  "#0000FF",
+]
 
 export default function ConfigScreen({ navigation }) {
   const { padColor, handleSetPadColor, padTextColor, handleSetPadTextColor } = useAudioContext();
@@ -73,22 +81,55 @@ export default function ConfigScreen({ navigation }) {
       </View>
 
       <ScrollView style={{ width: "100%", paddingHorizontal: 16 }}>
-        <Input
-          label="Cor dos pads"
-          tip="Use o formato hexadecimal #FFFFFF"
-          maxLength={7}
-          value={currentPadColor}
-          onChangeText={(text) => { setCurrentPadColor(text); handleSetPadColor(text) }}
-          placeholder={"#FFFFFF"}
-        />
-        <Input
-          label="Cor dos textos no pads"
-          tip="Use o formato hexadecimal #FFFFFF"
-          maxLength={7}
-          value={currentPadTextColor}
-          onChangeText={(text) => { setCurrentPadTextColor(text); handleSetPadTextColor(text) }}
-          placeholder={"#FFFFFF"}
-        />
+        <View>
+          <Text style={styles.title}>Cor dos pads</Text>
+          <ScrollView horizontal>
+            {
+              colors.map((color, idx) => (
+                <TouchableOpacity
+                  key={idx}
+                  onPress={() => handleSetPadColor(color)}
+                  style={[{
+                    width: 48,
+                    height: 48,
+                    borderRadius: 24,
+                    marginVertical: 8,
+                    marginHorizontal: 4,
+                    alignItems: 'center',
+                    justifyContent: "center",
+                    backgroundColor: color
+                  }, color === padColor && { borderWidth: 3, borderColor: '#FFFF00' }]}
+                />
+              ))
+            }
+
+          </ScrollView>
+        </View>
+        <View>
+          <Text style={styles.title}>Cor do texto dos pads</Text>
+          <ScrollView horizontal>
+          {
+              colors.map((color, idx) => (
+                <TouchableOpacity
+                  key={idx}
+                  onPress={() => handleSetPadTextColor(color)}
+                  style={[{
+                    width: 48,
+                    height: 48,
+                    borderRadius: 24,
+                    marginVertical: 8,
+                    marginHorizontal: 4,
+                    alignItems: 'center',
+                    justifyContent: "center",
+                    backgroundColor: color
+                  }, color === padTextColor && { borderWidth: 3, borderColor: '#FFFF00' }]}
+                />
+              ))
+            }
+          </ScrollView>
+        </View>
+
+
         <Button text="Editar seu pad" onPress={() => navigation.navigate("MyPadScreen")} />
 
         <TouchableOpacity
@@ -183,5 +224,11 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     marginVertical: 12,
     borderRadius: 24,
+  },
+  title: {
+    color: "#FFF",
+    fontSize: 16,
+    fontWeight: "bold",
+    marginTop: 8,
   },
 });

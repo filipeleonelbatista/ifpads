@@ -1,7 +1,8 @@
 import { FontAwesome } from "@expo/vector-icons";
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { useIsFocused } from "@react-navigation/native";
 import { StatusBar as ExpoStatusBar } from "expo-status-bar";
-import { useLayoutEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import {
   Dimensions, Image, Platform,
   SafeAreaView,
@@ -16,6 +17,8 @@ import { useAudioContext } from "../hooks/useAudioContext";
 import Pads from '../sets/index';
 
 export default function MyPadScreen({ navigation }) {
+
+  const isFocused = useIsFocused();
 
   const { setPads, loadPreset } = useAudioContext();
 
@@ -35,46 +38,41 @@ export default function MyPadScreen({ navigation }) {
   }
 
   async function handleOnSave() {
-    const newPad = {
-      userName: "Meu Pad",
-      image: require("../assets/images/user.png"),
-      sounds: []
-    }
-
     const myPad = {
-      ...newPad,
-      userName: padName,
-      image: selectedImage,
+      userName: padName == "" ? "Meu pad" : padName,
+      image: selectedImage == null ? require("../assets/images/user.png") : selectedImage,
       sounds: [...soundList]
     }
-    await AsyncStorage.setItem('@my_pad', JSON.stringify(myPad))    
+    await AsyncStorage.setItem('@my_pad', JSON.stringify(myPad))
 
     const padList = [
-      ...value,
       myPad,
       ...Pads
     ]
-
     setPads(padList)
     loadPreset(padList[0])
     navigation.navigate("Home")
-
   }
 
-  useLayoutEffect(() => {
-    const getData = async () => {
-      let value = await AsyncStorage.getItem('@my_pad')
+  useEffect(() => {
+    if (isFocused) {
+      const getData = async () => {
+        let value = await AsyncStorage.getItem('@my_pad')
 
-      if (value != null) {
-        value = JSON.parse(value)
-        
-        setPadName(value.userName)
-        setSoundList(value.sounds)
-        setSelectedImage(value.image)
+        if (value != null) {
+          value = JSON.parse(value)
+          setPadName(value.userName == "" ? "Meu pad" : value.userName)
+          setSoundList(value.sounds)
+          setSelectedImage(value.image)
+        } else {
+          setPadName("Meu Pad")
+          setSoundList([])
+          setSelectedImage(require("../assets/images/user.png"))
+        }
       }
+      getData();
     }
-    getData();
-  }, [])
+  }, [isFocused])
 
   return (
     <SafeAreaView style={styles.container}>

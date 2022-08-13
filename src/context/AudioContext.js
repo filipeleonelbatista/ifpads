@@ -15,30 +15,14 @@ export function AudioContextProvider(props) {
 
   const [sound, setSound] = useState();
 
-  const handleSetPadColor = async(color) => {
-    const regex = /^#(?:[0-9a-f]{3}){1,2}$/i;
-
-    const isColor = regex.test(color);
-
-    if (isColor) {
-      setpadColor(color)
-      await AsyncStorage.setItem('@color_pad', JSON.stringify(color))
-    } else {
-      setpadColor("#ff0000")
-    }
+  const handleSetPadColor = async (color) => {
+    setpadColor(color)
+    await AsyncStorage.setItem('@color_pad', color)
   }
 
   const handleSetPadTextColor = async (color) => {
-    const regex = /^#(?:[0-9a-f]{3}){1,2}$/i;
-
-    const isColor = regex.test(color);
-
-    if (isColor) {
-      setpadTextColor(color)
-      await AsyncStorage.setItem('@color_pad_text', JSON.stringify(color))
-    } else {
-      setpadTextColor("#000000")
-    }
+    setpadTextColor(color)
+    await AsyncStorage.setItem('@color_pad_text', color)
   }
 
   async function playSound(source) {
@@ -73,7 +57,7 @@ export function AudioContextProvider(props) {
         }
 
         if (cpt == null) {
-          await AsyncStorage.setItem('@color_pad_text',"#000000")
+          await AsyncStorage.setItem('@color_pad_text', "#000000")
         }
 
         if (value != null) {
@@ -93,8 +77,8 @@ export function AudioContextProvider(props) {
           ...Pads
         ]
 
-        setpadColor(cp != null ? JSON.parse(cp) : '#FF0000')
-        setpadTextColor(cpt != null ? JSON.parse(cpt) : '#000000')
+        setpadColor(cp != null ? cp : '#FF0000')
+        setpadTextColor(cpt != null ? cpt : '#000000')
         setPads(padList);
         loadPreset(padList[favPad]);
 

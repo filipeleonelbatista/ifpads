@@ -1,5 +1,4 @@
 import { StatusBar as ExpoStatusBar } from "expo-status-bar";
-import { useState } from "react";
 import {
   Dimensions,
   FlatList,
@@ -10,7 +9,7 @@ import {
   StyleSheet,
   Text,
   TouchableOpacity,
-  View,
+  View
 } from "react-native";
 import { useAudioContext } from "../hooks/useAudioContext";
 
@@ -36,6 +35,7 @@ export default function Home({ navigation }) {
       );
     }
   };
+
 
   if (!selectedPad)
     return (

@@ -7,6 +7,7 @@ import CustomDrawerComponent from "./src/components/CustomDrawerComponent";
 import { AudioContextProvider } from "./src/context/AudioContext";
 import ConfigScreen from "./src/screens/Config";
 import MyPadScreen from "./src/screens/MyPad";
+import Onboarding from "./src/screens/Onboarding";
 
 const Drawer = createDrawerNavigator();
 
@@ -16,9 +17,10 @@ export default function App() {
       <NavigationContainer>
         <Drawer.Navigator
           drawerContent={(props) => <CustomDrawerComponent {...props} />}
-          initialRouteName="Home"
+          initialRouteName="Onboarding"
           screenOptions={{ headerShown: false }}
         >
+          <Drawer.Screen name="Onboarding" component={Onboarding} />
           <Drawer.Screen name="Home" component={Home} />
           <Drawer.Screen name="ConfigScreen" component={ConfigScreen} />
           <Drawer.Screen name="MyPadScreen" component={MyPadScreen} />
