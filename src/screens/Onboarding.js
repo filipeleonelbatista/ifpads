@@ -3,8 +3,12 @@ import { useIsFocused } from '@react-navigation/native';
 import React, { useEffect, useState } from 'react';
 import { Dimensions, FlatList, Image, SafeAreaView, StyleSheet, Text, View } from 'react-native';
 import { Button } from '../components/Button';
+import { useAudioContext } from '../hooks/useAudioContext';
+import { theme } from '../styles/theme';
+
 
 export default function Onboarding({ navigation }) {
+  const { tema } = useAudioContext();
 
   const isFocused = useIsFocused();
 
@@ -12,20 +16,20 @@ export default function Onboarding({ navigation }) {
     {
       id: 1,
       image: require('../assets/images/onboarding/1.png'),
-      title: "Novos audios!",
-      subtitle: "Agradecimento especial o Colono gamer e a comunidade pelos audios novos.",
+      title: "Salve!",
+      subtitle: "Pressione o audio e salve para usar como toque no celular ou em outras paradas.",
     },
     {
       id: 2,
       image: require('../assets/images/onboarding/2.png'),
-      title: "Selecione cores dos pads",
-      subtitle: "Agora temos como selecionar as cores dos botões, só arrastar o menu lateral e tocar em configurações.",
+      title: "Adequação aos termos das lojas de apps",
+      subtitle: "Atendendo as políticas das lojas de aplicativos tentei retirar termos ofensivos para subir novamente online o app.",
     },
     {
       id: 3,
       image: require('../assets/images/onboarding/3.png'),
-      title: "Crie seu pad",
-      subtitle: "Crie seu pad com combos de audios para se divertir!",
+      title: "Modo branco opressor",
+      subtitle: "O app nasceu com modo escuro, agora temos a possibilidade de usar no dia com modo claro!",
     },
   ]
 
@@ -45,6 +49,8 @@ export default function Onboarding({ navigation }) {
   useEffect(() => {
     if (isFocused) {
       const executeAsync = async () => {
+
+        await AsyncStorage.clear();
         try {
           const value = await AsyncStorage.getItem('@onboarding')
           if (value !== null) {
@@ -68,7 +74,7 @@ export default function Onboarding({ navigation }) {
   return (
     <SafeAreaView style={{
       flex: 1,
-      backgroundColor: "#181818",
+      backgroundColor: theme[tema].background,
       alignItems: 'center',
       justifyContent: 'center',
       gap: 20,
@@ -90,8 +96,11 @@ export default function Onboarding({ navigation }) {
           ({ item, index }) => (
             <View key={index} style={{ alignItems: "center", width: Dimensions.get('window').width }}>
               <Image source={item.image} style={{ height: 250, width: 250, resizeMode: 'contain' }} />
-              <Text style={styles.title}>{item.title}</Text>
-              <Text style={styles.subtitle}>{item.subtitle}</Text>
+              <Text style={{ ...styles.title, color: theme[tema].color }}>{item.title}</Text>
+              <Text style={{
+                ...styles.subtitle,
+                color: theme[tema].color,
+              }}>{item.subtitle}</Text>
             </View>
           )
         }
@@ -99,7 +108,10 @@ export default function Onboarding({ navigation }) {
       <View style={{ flexDirection: 'row', justifyContent: 'center', marginTop: 20 }}>
         {slides.map((_, slidesIndex) => {
           return (
-            <View key={slidesIndex} style={[styles.indicator, slidesIndex + 1 === pageSelected && { backgroundColor: "#fff", width: 25 }]} />
+            <View key={slidesIndex} style={[{
+              ...styles.indicator,
+              backgroundColor: theme[tema].activity,
+            }, slidesIndex + 1 === pageSelected && { backgroundColor: theme[tema].color, width: 25 }]} />
           )
         })}
       </View>
@@ -118,14 +130,12 @@ export default function Onboarding({ navigation }) {
 
 const styles = StyleSheet.create({
   title: {
-    color: "#FFF",
     fontSize: 22,
     fontWeight: "bold",
     marginTop: 20,
     textAlign: "center"
   },
   subtitle: {
-    color: "#FFF",
     fontSize: 13,
     marginTop: 10,
     maxWidth: '70%',
@@ -135,7 +145,6 @@ const styles = StyleSheet.create({
   indicator: {
     height: 2.5,
     width: 10,
-    backgroundColor: 'gray',
     marginHorizontal: 3,
     borderRadius: 2
   }

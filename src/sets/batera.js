@@ -26,7 +26,7 @@ export default {
   sounds: [
     {
       source: bateraAVaiSeFuderAudio,
-      title: "Ah Vai, Vai se foder",
+      title: "Ah Vai, Vai se f0d3r",
       empty: false,
     },
     {
@@ -61,17 +61,17 @@ export default {
     },
     {
       source: bateraPassaSeuCuAudio,
-      title: "Passa seu cu",
+      title: "Passa seu c#",
       empty: false,
     },
     {
       source: bateraChuparNaFrenteDosOutrosAudio,
-      title: "Não Chupar na frente dos outros",
+      title: "Não Ch#p4r na frente dos outros",
       empty: false,
     },
     {
       source: bateraVaiChupandoAudio,
-      title: "Vai Chupando",
+      title: "Vai Ch#p@nd0",
       empty: false,
     },
     {
@@ -81,12 +81,12 @@ export default {
     },
     {
       source: bateraApareceuUmaPirocaAudio,
-      title: "Apareceu uma piroca",
+      title: "Apareceu uma p!r0c@",
       empty: false,
     },
     {
       source: bateraVouDarOCuAudio,
-      title: "Vou dar o cu",
+      title: "Vou dar o c#",
       empty: false,
     },
     {
@@ -96,12 +96,12 @@ export default {
     },
     {
       source: bateraEuOlheiPraPirocaAudio,
-      title: "Eu olhei pra piroca",
+      title: "Eu olhei pra p!r0c@",
       empty: false,
     },
     {
       source: bateraEuViAPirocaAquiAudio,
-      title: "Eu vi a piroca aqui",
+      title: "Eu vi a p!r0c@ aqui",
       empty: false,
     },
     {
@@ -111,7 +111,7 @@ export default {
     },
     {
       source: bateraNaoToPutoAudio,
-      title: "Não to puto",
+      title: "Não to p#t0",
       empty: false,
     },
     {
@@ -126,7 +126,7 @@ export default {
     },
     {
       source: bateraVaiChupanoAudio,
-      title: "Vai chupando",
+      title: "Vai ch#p@nd0",
       empty: false,
     },
   ],

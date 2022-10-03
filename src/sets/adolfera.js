@@ -28,7 +28,7 @@ export default {
     },
     {
       source: adolferaTecnologiaDeMerdaAudio,
-      title: "Tecnologia de merda",
+      title: "Tecnologia de m3rd4",
       empty: false,
     },
     {

@@ -20,7 +20,7 @@ export default {
     },
     {
       source: so7BarbieAudio,
-      title: "Chupar peitinho da Barbie",
+      title: "Ch#par p3!t!nh0 da Barbie",
       empty: false,
     },
     {
@@ -35,7 +35,7 @@ export default {
     },
     {
       source: so7hihitaputojaAudio,
-      title: "Hihi ta puto já",
+      title: "Hihi ta p#t0 já",
       empty: false,
     },
     {

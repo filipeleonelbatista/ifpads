@@ -7,6 +7,7 @@ export const AudioContext = createContext({});
 
 export function AudioContextProvider(props) {
 
+  const [tema, setTema] = useState('white');
   const [pads, setPads] = useState(false);
   const [padColor, setpadColor] = useState("#ff0000");
   const [padTextColor, setpadTextColor] = useState("#000000");
@@ -109,6 +110,7 @@ export function AudioContextProvider(props) {
         padColor, setpadColor, handleSetPadColor,
         padTextColor, setpadTextColor, handleSetPadTextColor,
         favPad, setFavPad,
+        tema, setTema
       }}
     >
       {props.children}

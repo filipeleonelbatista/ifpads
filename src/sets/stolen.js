@@ -17,7 +17,7 @@ export default {
     },
     {
       source: stolenComerBundaAudio,
-      title: "Comer bunda com bunda",
+      title: "Comer bnda com bnda",
       empty: false,
     },
     {
@@ -32,12 +32,12 @@ export default {
     },
     {
       source: stolenfizmerdaAudio,
-      title: "Fiz merda",
+      title: "Fiz m3rd4",
       empty: false,
     },
     {
       source: stolenvouchutarseucuAudio,
-      title: "Vou chutar seu Cu",
+      title: "Vou chutar seu C#",
       empty: false,
     },
     {

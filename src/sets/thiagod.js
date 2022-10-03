@@ -188,7 +188,7 @@ export default {
     },
     {
       source: thiagodVaiDarMerdaAudio,
-      title: "Vai dar merda",
+      title: "Vai dar m3rd4",
       empty: false,
     },
     {
@@ -238,17 +238,17 @@ export default {
     },
     {
       source: thiagodcalaabocaAudio,
-      title: "Cala a boca",
+      title: "C@l@ a boc@",
       empty: false,
     },
     {
       source: thiagodcaralhoomaluccoebraboAudio,
-      title: "Krl o maluco é brabo",
+      title: "K-rl o maluco é brabo",
       empty: false,
     },
     {
       source: thiagodcevaimorrerAudio,
-      title: "Vc Vai morrer",
+      title: "Vc Vai m0rr3r",
       empty: false,
     },
     {
@@ -303,12 +303,12 @@ export default {
     },
     {
       source: thiagodgtavdeathAudio,
-      title: "GTA V Morte",
+      title: "GTA V M0rt3",
       empty: false,
     },
     {
       source: thiagodissoeAudio,
-      title: "isso é safadeza",
+      title: "isso é s@f@d3z@",
       empty: false,
     },
     {
@@ -318,7 +318,7 @@ export default {
     },
     {
       source: thiagodparacomessaporraAudio,
-      title: "Para com essa porra",
+      title: "Para com essa p0rr4",
       empty: false,
     },
     {
@@ -378,7 +378,7 @@ export default {
     },
     {
       source: thiagodovoceeretardadoAudio,
-      title: "Vc é retardado",
+      title: "Vc é r3t4rd4do",
       empty: false,
     },
   ],

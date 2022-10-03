@@ -63,12 +63,12 @@ export default {
     },
     {
       source: caprioEuCaiNoPauAudio,
-      title: "Eu cai no pau",
+      title: "Eu cai no p@#",
       empty: false,
     },
     {
       source: caprioEuOdeioOColonoAudio,
-      title: "Odeio o colono",
+      title: "0d3i0 o colono",
       empty: false,
     },
     {
@@ -83,12 +83,12 @@ export default {
     },
     {
       source: caprioGemidoAudio,
-      title: "Gemido",
+      title: "Ahhhh",
       empty: false,
     },
     {
       source: caprioMeterTudoDeUmaVezAudio,
-      title: "Não vamo Meter tudo",
+      title: "Não vamo m3t3r tudo",
       empty: false,
     },
     {
@@ -98,7 +98,7 @@ export default {
     },
     {
       source: caprioVaiTomarNoCuAudio,
-      title: "Vai tomar no cu",
+      title: "Vai tomar no c#",
       empty: false,
     },
     {
@@ -108,7 +108,7 @@ export default {
     },
     {
       source: caprioVontadePicaCuAudio,
-      title: "Vontade de Pica",
+      title: "Vontade de P!C@",
       empty: false,
     },
   ],

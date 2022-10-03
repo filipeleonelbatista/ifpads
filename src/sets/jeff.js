@@ -38,7 +38,7 @@ export default {
     },
     {
       source: jeffFazerDrogaAudio,
-      title: "Fazer Droga",
+      title: "Fazer Dr0g4s",
       empty: false,
     },
     {

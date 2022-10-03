@@ -9,9 +9,11 @@ import {
 } from 'react-native';
 
 import { FontAwesome5 } from '@expo/vector-icons'
+import { useAudioContext } from '../hooks/useAudioContext';
+import { theme } from '../styles/theme';
 
 export function Input({ passwordInputType = false, label, tip, error, onChangeText, placeholder, disabled = false, ...rest }) {
-
+  const { tema } = useAudioContext();
   const [showPassword, setShowPassword] = useState(true);
 
   const handleToggleShowPassword = () => {
@@ -21,12 +23,12 @@ export function Input({ passwordInputType = false, label, tip, error, onChangeTe
   if (passwordInputType) {
     return (
       <View style={styles.container}>
-        {label && <Text style={styles.label}>{label}</Text>}
+        {label && <Text style={{ ...styles.label, color: theme[tema].color }}>{label}</Text>}
         <View style={styles.inputGroup}>
           <TextInput
             editable={!disabled}
             selectTextOnFocus={!disabled}
-            style={disabled ? styles.inputDisabledDate : styles.inputDate}
+            style={disabled ? { ...styles.inputDisabledDate, borderWidth: 1, borderColor: theme[tema].color } : { ...styles.inputDate, borderWidth: 1, borderColor: theme[tema].color }}
             onChangeText={text => onChangeText(text)}
             placeholder={placeholder}
             secureTextEntry={showPassword}
@@ -50,11 +52,11 @@ export function Input({ passwordInputType = false, label, tip, error, onChangeTe
 
   return (
     <View style={styles.container}>
-      {label && <Text style={styles.label}>{label}</Text>}
+      {label && <Text style={{ ...styles.label, color: theme[tema].color }}>{label}</Text>}
       <TextInput
         editable={!disabled}
         selectTextOnFocus={!disabled}
-        style={disabled ? styles.inputDisabled : styles.input}
+        style={disabled ? { ...styles.inputDisabled, borderWidth: 1, borderColor: theme[tema].color } : { ...styles.input, borderWidth: 1, borderColor: theme[tema].color }}
         onChangeText={text => onChangeText(text)}
         placeholder={placeholder}
         {...rest}

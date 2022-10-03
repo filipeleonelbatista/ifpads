@@ -1,12 +1,15 @@
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import { TouchableOpacity } from 'react-native-gesture-handler';
+import { useAudioContext } from '../hooks/useAudioContext';
+import { theme } from '../styles/theme';
 
 export function Button({ children, text, transparent = false, onPress, ...rest }) {
+  const { tema } = useAudioContext();
   return (
     <TouchableOpacity onPress={onPress} style={children ? styles.buttonChildren : transparent ? styles.buttonTransparent : styles.button}
       {...rest}>
-      {children ? children : <Text style={transparent ? styles.textButtonTransparent : styles.textButton} >{text}</Text>}
+      {children ? children : <Text style={transparent ? styles.textButtonTransparent : {...styles.textButton, color: theme[tema].color}} >{text}</Text>}
     </TouchableOpacity>
   );
 }

@@ -12,11 +12,12 @@ import {
   View
 } from "react-native";
 import { useAudioContext } from "../hooks/useAudioContext";
+import { theme } from "../styles/theme";
 
 const numColumns = 4;
 
 export default function Home({ navigation }) {
-  const { selectedPad, playSound, padColor, padTextColor } = useAudioContext();
+  const { selectedPad, playSound, padColor, padTextColor, tema } = useAudioContext();
 
   const renderItem = ({ item, index }) => {
     if (item.empty) {
@@ -39,24 +40,25 @@ export default function Home({ navigation }) {
 
   if (!selectedPad)
     return (
-      <SafeAreaView style={styles.container}>
+      <SafeAreaView style={{ ...styles.container, backgroundColor: theme[tema].background }}>
         <View style={styles.statusBar}>
-          <ExpoStatusBar backgroundColor="#000" style="light" />
+          <ExpoStatusBar backgroundColor={theme[tema].background} style={tema === "white" ? "dark" : "light"} />
         </View>
-        <Text style={styles.headerTextValue}>Carregando... </Text>
+        <Text style={{ ...styles.headerTextValue, color: theme[tema].color }}>Carregando... </Text>
       </SafeAreaView>
     );
 
   return (
-    <SafeAreaView style={styles.container}>
+    <SafeAreaView style={{ ...styles.container, backgroundColor: theme[tema].background }}>
       <View style={styles.statusBar}>
-        <ExpoStatusBar backgroundColor="#000" style="light" />
+        <ExpoStatusBar backgroundColor={theme[tema].background} style={tema === "white" ? "dark" : "light"} />
       </View>
-      <View style={styles.rowSpaced}>
+      <View style={{ ...styles.rowSpaced, borderBottomColor: theme[tema].activity }}>
         <View style={styles.row}>
-          <Text style={styles.headerTextLabel}>Pad: </Text>
-          <Text style={styles.headerTextValue}>{selectedPad.userName} </Text>
+          <Text style={{ ...styles.headerTextLabel, color: theme[tema].color }}>Pad: </Text>
+          <Text style={{ ...styles.headerTextValue, color: theme[tema].color }}>{selectedPad.userName} </Text>
         </View>
+
         <TouchableOpacity
           accessible={true}
           accessibilityLabel={"Botão para abrir o menu lateral de opções!"}
@@ -88,7 +90,7 @@ export default function Home({ navigation }) {
             <View
               style={{ flex: 1, alignItems: 'center', justifyContent: 'center', width: "100%" }}
             >
-              <Text style={[styles.headerTextValue, {width: "100%", textAlign: 'center'}]}>Este pad não possui sons ainda.</Text>
+              <Text style={[styles.headerTextValue, { color: theme[tema].color, width: "100%", textAlign: 'center' }]}>Este pad não possui sons ainda.</Text>
             </View>
           )
 

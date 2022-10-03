@@ -25,11 +25,6 @@ export default {
       empty: false,
     },
     {
-      source: vandepjadeiAudio,
-      title: "Ja dei",
-      empty: false,
-    },
-    {
       source: vandepgostouAudio,
       title: "Gostou",
       empty: false,

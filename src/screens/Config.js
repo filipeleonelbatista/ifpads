@@ -17,6 +17,9 @@ import * as Clipboard from "expo-clipboard";
 import { useState } from "react";
 import { useAudioContext } from "../hooks/useAudioContext";
 
+import app from '../../app.json'
+import { theme } from "../styles/theme";
+
 const colors = [
   "#FFFFFF",
   "#000000",
@@ -27,10 +30,7 @@ const colors = [
 ]
 
 export default function ConfigScreen({ navigation }) {
-  const { padColor, handleSetPadColor, padTextColor, handleSetPadTextColor } = useAudioContext();
-
-  const [currentPadColor, setCurrentPadColor] = useState(padColor);
-  const [currentPadTextColor, setCurrentPadTextColor] = useState(padTextColor);
+  const { padColor, handleSetPadColor, padTextColor, handleSetPadTextColor, tema, setTema } = useAudioContext();
 
   const handlePix = () => {
     Clipboard.setStringAsync(
@@ -58,13 +58,13 @@ export default function ConfigScreen({ navigation }) {
   };
 
   return (
-    <SafeAreaView style={styles.container}>
+    <SafeAreaView style={{ ...styles.container, backgroundColor: theme[tema].background }}>
       <View style={styles.statusBar}>
-        <ExpoStatusBar backgroundColor="#000" style="light" />
+        <ExpoStatusBar backgroundColor={theme[tema].background} style={tema === "white" ? "dark" : "light"} />
       </View>
-      <View style={styles.rowSpaced}>
+      <View style={{ ...styles.rowSpaced, borderBottomColor: theme[tema].activity }}>
         <View style={styles.row}>
-          <Text style={styles.headerTextLabel}>Configurações</Text>
+          <Text style={{ ...styles.headerTextLabel, color: theme[tema].color }}>Configurações</Text>
         </View>
         <TouchableOpacity
           accessible={true}
@@ -76,13 +76,13 @@ export default function ConfigScreen({ navigation }) {
           onPress={() => navigation.toggleDrawer()}
           style={styles.imageTouchable}
         >
-          <FontAwesome name="navicon" size={22} color="white" />
+          <FontAwesome name="navicon" size={22} color={theme[tema].color} />
         </TouchableOpacity>
       </View>
 
       <ScrollView style={{ width: "100%", paddingHorizontal: 16 }}>
         <View>
-          <Text style={styles.title}>Cor dos pads</Text>
+          <Text style={{ ...styles.title, color: theme[tema].color }}>Cor dos pads</Text>
           <ScrollView horizontal>
             {
               colors.map((color, idx) => (
@@ -97,8 +97,9 @@ export default function ConfigScreen({ navigation }) {
                     marginHorizontal: 4,
                     alignItems: 'center',
                     justifyContent: "center",
-                    backgroundColor: color
-                  }, color === padColor && { borderWidth: 3, borderColor: '#FFFF00' }]}
+                    backgroundColor: color,
+                    borderWidth: 1, borderColor: "#000"
+                  }, color === padColor && { borderWidth: 3, borderColor: "red" }]}
                 />
               ))
             }
@@ -106,9 +107,9 @@ export default function ConfigScreen({ navigation }) {
           </ScrollView>
         </View>
         <View>
-          <Text style={styles.title}>Cor do texto dos pads</Text>
+          <Text style={{ ...styles.title, color: theme[tema].color }} >Cor do texto dos pads</Text>
           <ScrollView horizontal>
-          {
+            {
               colors.map((color, idx) => (
                 <TouchableOpacity
                   key={idx}
@@ -121,8 +122,9 @@ export default function ConfigScreen({ navigation }) {
                     marginHorizontal: 4,
                     alignItems: 'center',
                     justifyContent: "center",
-                    backgroundColor: color
-                  }, color === padTextColor && { borderWidth: 3, borderColor: '#FFFF00' }]}
+                    backgroundColor: color,
+                    borderWidth: 1, borderColor: "#000"
+                  }, color === padTextColor && { borderWidth: 3, borderColor: "red" }]}
                 />
               ))
             }
@@ -131,6 +133,29 @@ export default function ConfigScreen({ navigation }) {
 
 
         <Button text="Editar seu pad" onPress={() => navigation.navigate("MyPadScreen")} />
+
+        <TouchableOpacity
+          accessible={true}
+          accessibilityLabel={"Botão para mudar modo escuro claro!"}
+          accessibilityTraits={"button"}
+          accessibilityComponentType={"button"}
+          accessibilityViewIsModal={true}
+          accessibilityElementsHidden={true}
+          onPress={() => {
+            setTema(tema === 'dark' ? 'white' : 'dark')
+          }}
+          style={{
+            padding: 15,
+            marginVertical: 8,
+            borderRadius: 8,
+            backgroundColor: theme[tema].color,
+          }}
+        >
+          <View style={{ flexDirection: "row", alignItems: "center" }}>
+            <Ionicons color={theme[tema].background} name={tema === 'white' ? "moon-outline" : "ios-sunny"} size={22} />
+            <Text style={{ marginLeft: 10, color: theme[tema].background }}>{tema === 'white' ? "Modo padrão escuro" : "Modo Branco Opressor"}</Text>
+          </View>
+        </TouchableOpacity>
 
         <TouchableOpacity
           accessible={true}
@@ -144,12 +169,12 @@ export default function ConfigScreen({ navigation }) {
             padding: 15,
             marginVertical: 8,
             borderRadius: 8,
-            backgroundColor: "#FFF"
+            backgroundColor: theme[tema].color,
           }}
         >
           <View style={{ flexDirection: "row", alignItems: "center" }}>
-            <Ionicons name="share-social-outline" size={22} />
-            <Text style={{ marginLeft: 10 }}>Compartilhe com amigos</Text>
+            <Ionicons color={theme[tema].background} name="share-social-outline" size={22} />
+            <Text style={{ marginLeft: 10, color: theme[tema].background }}>Compartilhe com amigos</Text>
           </View>
         </TouchableOpacity>
         <TouchableOpacity
@@ -166,19 +191,19 @@ export default function ConfigScreen({ navigation }) {
             padding: 15,
             marginVertical: 8,
             borderRadius: 8,
-            backgroundColor: "#FFF"
+            backgroundColor: theme[tema].color,
           }}
         >
           <View style={{ flexDirection: "row", alignItems: "center" }}>
-            <FontAwesome name="qrcode" size={22} color="black" />
-            <Text style={{ marginLeft: 10 }}>Me pague um pastel 😉</Text>
+            <FontAwesome color={theme[tema].background} name="qrcode" size={22} />
+            <Text style={{ marginLeft: 10, color: theme[tema].background }}>Me pague um pastel 😉</Text>
           </View>
         </TouchableOpacity>
-        <Text style={{ width: "100%", textAlign: 'center', paddingVertical: 10, color: "#FFF", fontWeight: "bold" }}>Versão 1.2</Text>
+        <Text style={{ width: "100%", textAlign: 'center', paddingVertical: 10, color: theme[tema].color, fontWeight: "bold" }}>Versão {app.expo.version}</Text>
       </ScrollView>
 
 
-    </SafeAreaView>
+    </SafeAreaView >
   );
 }
 

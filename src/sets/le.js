@@ -22,17 +22,17 @@ export default {
     },
     {
       source: leCuDoStolenAudio,
-      title: "Cu do Stolen",
+      title: "C# do St0len",
       empty: false,
     },
     {
       source: leVontadeDeCagarAudio,
-      title: "Vontade de Cagar",
+      title: "Vontade de C@g@r",
       empty: false,
     },
     {
       source: leVouDeCagarAudio,
-      title: "Vou Cagar",
+      title: "Vou C@g@r",
       empty: false,
     },
     {

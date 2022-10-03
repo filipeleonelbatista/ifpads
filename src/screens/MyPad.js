@@ -15,12 +15,13 @@ import { Button } from "../components/Button";
 import { Input } from "../components/Input";
 import { useAudioContext } from "../hooks/useAudioContext";
 import Pads from '../sets/index';
+import { theme } from "../styles/theme";
 
 export default function MyPadScreen({ navigation }) {
 
   const isFocused = useIsFocused();
 
-  const { setPads, loadPreset } = useAudioContext();
+  const { setPads, loadPreset, tema } = useAudioContext();
 
   const [padName, setPadName] = useState('');
   const [soundList, setSoundList] = useState([])
@@ -75,13 +76,13 @@ export default function MyPadScreen({ navigation }) {
   }, [isFocused])
 
   return (
-    <SafeAreaView style={styles.container}>
+    <SafeAreaView style={{ ...styles.container, backgroundColor: theme[tema].background }}>
       <View style={styles.statusBar}>
-        <ExpoStatusBar backgroundColor="#000" style="light" />
+        <ExpoStatusBar backgroundColor={theme[tema].background} style={tema === "white" ? "dark" : "light"} />
       </View>
-      <View style={styles.rowSpaced}>
+      <View style={{ ...styles.rowSpaced, borderBottomColor: theme[tema].activity }}>
         <View style={styles.row}>
-          <Text style={styles.headerTextLabel}>Editar meu pad</Text>
+          <Text style={{ ...styles.headerTextLabel, color: theme[tema].color }}>Editar meu pad</Text>
         </View>
         <TouchableOpacity
           accessible={true}
@@ -93,7 +94,7 @@ export default function MyPadScreen({ navigation }) {
           onPress={() => navigation.toggleDrawer()}
           style={styles.imageTouchable}
         >
-          <FontAwesome name="navicon" size={22} color="white" />
+          <FontAwesome name="navicon" size={22} color={theme[tema].color} />
         </TouchableOpacity>
       </View>
 
@@ -120,7 +121,7 @@ export default function MyPadScreen({ navigation }) {
                   alignItems: 'center',
                   justifyContent: "center",
                   backgroundColor: "#333"
-                }, selectedImage === pad.image && { borderWidth: 3, borderColor: '#FFFF00' }]}
+                }, selectedImage === pad.image && { borderWidth: 3, borderColor: 'red' }]}
               >
                 <Image
                   accessible={true}
@@ -155,7 +156,7 @@ export default function MyPadScreen({ navigation }) {
             marginVertical: 8,
           }}>
             <Text
-              style={{ color: "#FFF", fontWeight: 'bold', fontSize: 24, marginVertical: 8 }}
+              style={{ color: theme[tema].color, fontWeight: 'bold', fontSize: 24, marginVertical: 8 }}
             >
               Meu Pad
             </Text>
@@ -169,7 +170,7 @@ export default function MyPadScreen({ navigation }) {
               onPress={() => setMyPadAcordeon(!myPadAccordeon)}
               style={styles.imageTouchable}
             >
-              <FontAwesome name={myPadAccordeon ? "chevron-up" : "chevron-down"} size={22} color="white" />
+              <FontAwesome name={myPadAccordeon ? "chevron-up" : "chevron-down"} size={22} color={theme[tema].color} />
             </TouchableOpacity>
           </View>
 
@@ -187,7 +188,7 @@ export default function MyPadScreen({ navigation }) {
                       marginVertical: 8,
                     }}>
                     <Text
-                      style={{ color: "#FFF", fontWeight: 'bold', fontSize: 18 }}
+                      style={{ color: theme[tema].color, fontWeight: 'bold', fontSize: 18 }}
                     >
                       {sound.title}
                     </Text>
@@ -210,7 +211,7 @@ export default function MyPadScreen({ navigation }) {
                       }}
                     >
                       <View style={{ flexDirection: "row", alignItems: "center" }}>
-                        <FontAwesome name="trash" size={22} color="white" />
+                        <FontAwesome name="trash" size={22} color={theme[tema].background} />
                       </View>
                     </TouchableOpacity>
                   </View>
@@ -222,7 +223,7 @@ export default function MyPadScreen({ navigation }) {
                     justifyContent: 'center',
                   }}>
                     <Text
-                      style={{ color: "#FFF", fontWeight: 'bold', fontSize: 16, marginVertical: 2 }}
+                      style={{ color: theme[tema].color, fontWeight: 'bold', fontSize: 16, marginVertical: 2 }}
                     >
                       Sem sons no momento
                     </Text>
@@ -242,7 +243,7 @@ export default function MyPadScreen({ navigation }) {
             marginVertical: 8,
           }}>
             <Text
-              style={{ color: "#FFF", fontWeight: 'bold', fontSize: 24, marginVertical: 8 }}
+              style={{ color: theme[tema].color, fontWeight: 'bold', fontSize: 24, marginVertical: 8 }}
             >
               Pads
             </Text>
@@ -256,7 +257,7 @@ export default function MyPadScreen({ navigation }) {
               onPress={() => setPadsAcordeon(!padsAccordeon)}
               style={styles.imageTouchable}
             >
-              <FontAwesome name={padsAccordeon ? "chevron-up" : "chevron-down"} size={22} color="white" />
+              <FontAwesome name={padsAccordeon ? "chevron-up" : "chevron-down"} size={22} color={theme[tema].color} />
             </TouchableOpacity>
           </View>
 
@@ -275,7 +276,7 @@ export default function MyPadScreen({ navigation }) {
                           marginVertical: 8,
                         }}>
                           <Text
-                            style={{ color: "#FFF", fontWeight: 'bold', fontSize: 18 }}
+                            style={{ color: theme[tema].color, fontWeight: 'bold', fontSize: 18 }}
                           >
                             {pad.userName}{"\n"}{sound.title}
                           </Text>
@@ -298,7 +299,7 @@ export default function MyPadScreen({ navigation }) {
                             }}
                           >
                             <View style={{ flexDirection: "row", alignItems: "center" }}>
-                              <FontAwesome name="plus" size={22} color="white" />
+                              <FontAwesome name="plus" size={22} color={theme[tema].background} />
                             </View>
                           </TouchableOpacity>
                         </View>

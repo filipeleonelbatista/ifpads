@@ -2,7 +2,7 @@ import marginalenfioalinguaAudio from "../assets/sounds/marginalx11/enfioalingua
 import marginalvoudarmeucuAudio from "../assets/sounds/marginalx11/voudarmeucu.mp3";
 
 export default {
-  userName: "[Desconhecido]",
+  userName: "MarginalX11",
   image: require("../assets/images/marginalx11.jpg"),
   sounds: [
     {
@@ -12,7 +12,7 @@ export default {
     },
     {
       source: marginalvoudarmeucuAudio,
-      title: "Vou dar meu cu",
+      title: "Vou dar meu c#",
       empty: false,
     },
   ],

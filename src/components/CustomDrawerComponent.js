@@ -3,9 +3,10 @@ import { DrawerContentScrollView } from "@react-navigation/drawer";
 import { Alert, Image, ImageBackground, Share, Text, View } from "react-native";
 import { TouchableOpacity } from "react-native-gesture-handler";
 import { useAudioContext } from "../hooks/useAudioContext";
+import { theme } from "../styles/theme";
 
 export default function CustomDrawerComponent(props) {
-  const { pads, selectedPad, loadPreset } = useAudioContext();
+  const { pads, selectedPad, loadPreset, tema } = useAudioContext();
 
   const handleNavigate = () => {
     props.navigation.navigate("ConfigScreen");
@@ -20,7 +21,7 @@ export default function CustomDrawerComponent(props) {
     <View style={{ flex: 1 }}>
       <DrawerContentScrollView
         {...props}
-        contentContainerStyle={{ backgroundColor: "#101010" }}
+        contentContainerStyle={{ backgroundColor: theme[tema].background }}
       >
         <ImageBackground
           accessible={true}
@@ -45,7 +46,7 @@ export default function CustomDrawerComponent(props) {
             {selectedPad.userName}
           </Text>
         </ImageBackground>
-        <View style={{ flex: 1, backgroundColor: "#FFF", paddingTop: 10 }}>
+        <View style={{ flex: 1, backgroundColor: theme[tema].background, paddingTop: 10 }}>
           {pads.map((pad, index) => {
             return (
               <TouchableOpacity
@@ -68,7 +69,7 @@ export default function CustomDrawerComponent(props) {
                   borderRadius: 8,
                   backgroundColor:
                     pad.userName === selectedPad.userName
-                      ? "#ccc"
+                      ? theme[tema].activity
                       : "transparent",
                 }}
               >
@@ -83,14 +84,14 @@ export default function CustomDrawerComponent(props) {
                       borderRadius: 12,
                     }}
                   />
-                  <Text style={{ marginLeft: 10 }}>{pad.userName}</Text>
+                  <Text style={{ marginLeft: 10, color: theme[tema].color }}>{pad.userName}</Text>
                 </View>
               </TouchableOpacity>
             );
           })}
         </View>
       </DrawerContentScrollView>
-      <View style={{ padding: 4, borderTopWidth: 1, borderTopColor: "#CCC" }}>
+      <View style={{ padding: 4, backgroundColor: theme[tema].background, borderTopWidth: 1, borderTopColor: theme[tema].activity }}>
         <TouchableOpacity
           accessible={true}
           accessibilityLabel={
@@ -106,12 +107,12 @@ export default function CustomDrawerComponent(props) {
             marginHorizontal: 12,
             marginVertical: 2,
             borderRadius: 8,
-            backgroundColor: "transparent"
+            backgroundColor: 'transparent'
           }}
         >
           <View style={{ flexDirection: "row", alignItems: "center" }}>
-            <FontAwesome name="cog" size={22} color="black" />
-            <Text style={{ marginLeft: 10 }}>Criar seu pad</Text>
+            <FontAwesome name="cog" size={22} color={theme[tema].color} />
+            <Text style={{ marginLeft: 10, color: theme[tema].color }}>Criar seu pad</Text>
           </View>
         </TouchableOpacity>
       </View>

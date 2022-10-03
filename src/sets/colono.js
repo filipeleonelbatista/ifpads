@@ -132,7 +132,7 @@ export default {
     },
     {
       source: colonoChatEuOdeioAudio,
-      title: "Chat eu odeio",
+      title: "Chat eu 0d3!0",
       empty: false,
     },
     {
@@ -147,7 +147,7 @@ export default {
     },
     {
       source: colonoJaCagueiAudio,
-      title: "Ja Caguei",
+      title: "Ja C@g#3!",
       empty: false,
     },
     {
@@ -212,7 +212,7 @@ export default {
     },
     {
       source: colonoAMenosQueDeMerdaAudio,
-      title: "A menos que de merda",
+      title: "A menos que de m3rd4",
       empty: false,
     },
     {
@@ -232,7 +232,7 @@ export default {
     },
     {
       source: colonoBostaNaCabecaAudio,
-      title: "Bosta na cabeça",
+      title: "Bst na cabeça",
       empty: false,
     },
     {
@@ -247,12 +247,12 @@ export default {
     },
     {
       source: colonoChupaotarioAudio,
-      title: "Chupa otário",
+      title: "Ch#p4 otário",
       empty: false,
     },
     {
       source: colonoChupameupoAudio,
-      title: "Chupa meu pó",
+      title: "Ch#p4 meu pó",
       empty: false,
     },
     {
@@ -317,7 +317,7 @@ export default {
     },
     {
       source: colonoCvBurroAudio,
-      title: "Vc é Burro",
+      title: "Vc é B#rro",
       empty: false,
     },
     {
@@ -327,7 +327,7 @@ export default {
     },
     {
       source: colonoDanabundaAudio,
-      title: "Da na bunda",
+      title: "Da na bnda",
       empty: false,
     },
     {
@@ -477,7 +477,7 @@ export default {
     },
     {
       source: colonoGtaVDeathAudio,
-      title: "GTA V death",
+      title: "GTA V d3@th",
       empty: false,
     },
     {
@@ -512,7 +512,7 @@ export default {
     },
     {
       source: colonoicaramefoderamAudio,
-      title: "Cara me foderam",
+      title: "Cara me f0d3r4m",
       empty: false,
     },
     {
@@ -522,12 +522,12 @@ export default {
     },
     {
       source: colonoissoedaemondriversAudio,
-      title: "isso é safadeza",
+      title: "isso é s@f@d3z4",
       empty: false,
     },
     {
       source: colonojaaviseiquevaidarmerdaAudio,
-      title: "Ja avisei que vai dar merda",
+      title: "Ja avisei que vai dar mrda",
       empty: false,
     },
     {
@@ -573,11 +573,6 @@ export default {
     {
       source: colonomeupeAudio,
       title: "No meu pé",
-      empty: false,
-    },
-    {
-      source: colonomentirosoAudio,
-      title: "Mentiroso",
       empty: false,
     },
     {
@@ -632,7 +627,7 @@ export default {
     },
     {
       source: colononocudovandepAudio,
-      title: "No cu do vandep",
+      title: "No c# do vandep",
       empty: false,
     },
     {
@@ -652,12 +647,12 @@ export default {
     },
     {
       source: colonopirocaAudio,
-      title: "Piroca",
+      title: "P!r0c@",
       empty: false,
     },
     {
       source: colonopiroca2Audio,
-      title: "Piroca 2",
+      title: "P!r0c@ 2",
       empty: false,
     },
     {
@@ -667,12 +662,12 @@ export default {
     },
     {
       source: colonoquasefizmerdaAudio,
-      title: "Quase fiz merda",
+      title: "Quase fiz mrda",
       empty: false,
     },
     {
       source: colonoqueropauAudio,
-      title: "Quero pau",
+      title: "Quero p4#",
       empty: false,
     },
     {
@@ -722,7 +717,7 @@ export default {
     },
     {
       source: colonotodocagadoAudio,
-      title: "Todo cagado",
+      title: "Todo Kg@ndo",
       empty: false,
     },
     {
@@ -732,7 +727,7 @@ export default {
     },
     {
       source: colonovcstaomefudendoAudio,
-      title: "Vocês tão me fudendo",
+      title: "Vocês tão me f#d3nd0",
       empty: false,
     },
     {

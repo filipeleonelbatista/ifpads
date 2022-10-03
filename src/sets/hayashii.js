@@ -87,12 +87,12 @@ export default {
     },
     {
       source: hayashiiBateNaMinhaBundaAudio,
-      title: "Bate na minha bunda, bate",
+      title: "Bate na minha b#nd4, bate",
       empty: false,
     },
     {
       source: hayashiiBateNoPauAudio,
-      title: "Bati no pau",
+      title: "Bati no p4#",
       empty: false,
     },
     {
@@ -102,22 +102,22 @@ export default {
     },
     {
       source: hayashiiBundaPorUltimoAudio,
-      title: "Bunda por ultimo",
+      title: "B#nd4 por ultimo",
       empty: false,
     },
     {
       source: hayashiiCaralhoDeliciosoAudio,
-      title: "CaralhoDelicioso",
+      title: "Baralho Delicioso",
       empty: false,
     },
     {
       source: hayashiiCarambaEssaRolaEhGrandeAudio,
-      title: "Rola é Grande",
+      title: "R0l4 é Grande",
       empty: false,
     },
     {
       source: hayashiiChupandoTodoOMundoAudio,
-      title: "Chupando Todo Mundo",
+      title: "Ch#p4nd0 Todo Mundo",
       empty: false,
     },
     {
@@ -127,17 +127,17 @@ export default {
     },
     {
       source: hayashiiDoNaBundaDeTodoOMundoAudio,
-      title: "Do na bunda de todo o mundo",
+      title: "Do na bnda de todo o mundo",
       empty: false,
     },
     {
       source: hayashiiDuroDentroDeVcAudio,
-      title: "Duro dentro de você",
+      title: "D#r0 dentro de você",
       empty: false,
     },
     {
       source: hayashiiEsseAquiSempreMeFodeAudio,
-      title: "Esse aqui sempre me fode",
+      title: "Esse aqui sempre me f0d3",
       empty: false,
     },
     {
@@ -172,7 +172,7 @@ export default {
     },
     {
       source: hayashiiMandaFotoDaRolaAudio,
-      title: "Manda foto da rola",
+      title: "Manda foto da R0l4",
       empty: false,
     },
     {
@@ -182,7 +182,7 @@ export default {
     },
     {
       source: hayashiiOhAquiMinhaBundinhaAudio,
-      title: "Oh aqui minha bundinha",
+      title: "Oh aqui minha bndinha",
       empty: false,
     },
     {
@@ -207,12 +207,12 @@ export default {
     },
     {
       source: hayashiiTavaDuroEVcBatendoNaMinhaBundaAudio,
-      title: "Tava Duro e vc Batendo na minha bunda",
+      title: "Tava Duro e vc Batendo na minha bnda",
       empty: false,
     },
     {
       source: hayashiiTeArremesseiOCaralhoAudio,
-      title: "Te Arremessei o Caralho",
+      title: "Te Arremessei o Baralho",
       empty: false,
     },
     {
@@ -232,7 +232,7 @@ export default {
     },
     {
       source: hayashiiVaiTomarNoSeuCuAudio,
-      title: "Vai tomar no seu cu",
+      title: "Vai tomar no seu c#",
       empty: false,
     },
     {
@@ -267,12 +267,12 @@ export default {
     },
     {
       source: hayashiieutenhoumpintinhofofinhoAudio,
-      title: "Pintinho Fofinho",
+      title: "P!nt!nh0 Fofinho",
       empty: false,
     },
     {
       source: hayashiieutenhoumpintinhoAudio,
-      title: "Pintinho",
+      title: "P!nt!nh0",
       empty: false,
     },
     {
@@ -287,7 +287,7 @@ export default {
     },
     {
       source: hayashiifdpburroAudio,
-      title: "FDP Burro",
+      title: "FDP Burr0",
       empty: false,
     },
     {
@@ -307,7 +307,7 @@ export default {
     },
     {
       source: hayashiicalaabocaAudio,
-      title: "Cala a boca",
+      title: "K-la a boca",
       empty: false,
     },
     {
@@ -317,7 +317,7 @@ export default {
     },
     {
       source: hayashiicuidadopranaodarnabundaAudio,
-      title: "Cuidado pra não dar na bunda",
+      title: "Cuidado pra não dar na bnda",
       empty: false,
     },
     {
@@ -327,7 +327,7 @@ export default {
     },
     {
       source: hayashiipqmeupauAudio,
-      title: "pq meu pau",
+      title: "pq meu p4#",
       empty: false,
     },
     {
@@ -347,7 +347,7 @@ export default {
     },
     {
       source: hayashiitodomundoquermeupauAudio,
-      title: "Todo o mundo quer meu pau",
+      title: "Todo o mundo quer meu P4#",
       empty: false,
     },
     {
@@ -362,7 +362,7 @@ export default {
     },
     {
       source: hayashiivoucagarAudio,
-      title: "Vou cagar em live",
+      title: "Vou c@g@r em live",
       empty: false,
     },
     {
@@ -377,12 +377,12 @@ export default {
     },
     {
       source: hayashiinaoconsigochuparAudio,
-      title: "Não consigo chupar",
+      title: "Não consigo ch#p@r",
       empty: false,
     },
     {
       source: hayashiipaunabundaAudio,
-      title: "Pau na bunda",
+      title: "P4# na bnda",
       empty: false,
     },
     {
@@ -392,7 +392,7 @@ export default {
     },
     {
       source: hayashiiqueroseupauAudio,
-      title: "Quero seu pau",
+      title: "Quero seu p4#",
       empty: false,
     },
     {

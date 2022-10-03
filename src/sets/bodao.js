@@ -6,7 +6,7 @@ export default {
   sounds: [
     {
       source: bodaoEsseEraOCuAudio,
-      title: "Esse era o cu",
+      title: "Esse era o c#",
       empty: false,
     },
   ],

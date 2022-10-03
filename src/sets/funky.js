@@ -13,7 +13,7 @@ export default {
     },
     {
       source: funkyMeFuderamAudio,
-      title: "Me Fuderam Veio",
+      title: "Me F#d3r4m Veio",
       empty: false,
     },
     {

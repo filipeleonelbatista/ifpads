@@ -29,7 +29,7 @@ export default {
     },
     {
       source: gabeDorNaBundaAudio,
-      title: "Dor na bunda",
+      title: "Dor na bnda",
       empty: false,
     },
     {
