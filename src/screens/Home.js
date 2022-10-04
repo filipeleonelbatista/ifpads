@@ -1,15 +1,16 @@
+import { Asset } from 'expo-asset';
+import * as MediaLibrary from 'expo-media-library';
 import { StatusBar as ExpoStatusBar } from "expo-status-bar";
 import {
+  Alert,
   Dimensions,
   FlatList,
-  Image,
-  Platform,
+  Image, Platform,
   SafeAreaView,
   StatusBar,
   StyleSheet,
   Text,
-  TouchableOpacity,
-  View
+  TouchableOpacity, View
 } from "react-native";
 import { useAudioContext } from "../hooks/useAudioContext";
 import { theme } from "../styles/theme";
@@ -19,6 +20,35 @@ const numColumns = 4;
 export default function Home({ navigation }) {
   const { selectedPad, playSound, padColor, padTextColor, tema } = useAudioContext();
 
+  const saveAudio = async (audio) => {
+
+    const audioFileAssetObject = await Asset.loadAsync(audio.source);
+
+    const perm = await MediaLibrary.getPermissionsAsync();
+
+    if (perm.status != 'granted') {
+      return;
+    }
+
+    try {
+      const asset = await MediaLibrary.createAssetAsync(audioFileAssetObject[0].localUri);
+      const album = await MediaLibrary.getAlbumAsync('IFPads');
+
+      if (album == null) {
+        await MediaLibrary.createAlbumAsync('IFPads', asset, false);
+      } else {
+        await MediaLibrary.addAssetsToAlbumAsync([asset], album, false);
+      }
+
+      Alert.alert(
+        "Audio salvo",
+        "O audio foi salvo em " + asset.uri.replace("file://", "").replace(asset.filename, ""),
+      )
+    } catch (e) {
+      console.error(e);
+    }
+  }
+
   const renderItem = ({ item, index }) => {
     if (item.empty) {
       return <View styles={[styles.button, styles.buttonInvisible]}></View>;
@@ -26,6 +56,19 @@ export default function Home({ navigation }) {
       return (
         <TouchableOpacity
           key={index}
+          onLongPress={() => {
+            Alert.alert(
+              "Deseja baixar este audio?",
+              "O audio será salvo na sua memoria do celular",
+              [
+                {
+                  text: "Sim",
+                  onPress: () => saveAudio(item),
+                },
+                { text: "Não", onPress: () => console.log("Não Pressed") }
+              ]
+            )
+          }}
           onPress={() => {
             playSound(item.source);
           }}

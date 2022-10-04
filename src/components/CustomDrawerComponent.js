@@ -28,7 +28,7 @@ export default function CustomDrawerComponent(props) {
           accessibilityLabel={
             "Logo com as letras I F e Pads escrito em baixo do F em laranja"
           }
-          style={{ padding: 20 }}
+          style={{ padding: 20, marginTop: -4 }}
           source={require("../assets/images/banner.png")}
         >
           <Image

@@ -28,7 +28,7 @@ export default function Onboarding({ navigation }) {
     {
       id: 3,
       image: require('../assets/images/onboarding/3.png'),
-      title: "Modo branco opressor",
+      title: "Modo branco 0pr3ss0r",
       subtitle: "O app nasceu com modo escuro, agora temos a possibilidade de usar no dia com modo claro!",
     },
   ]
