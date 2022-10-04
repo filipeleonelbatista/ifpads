@@ -27,7 +27,7 @@ export default function Home({ navigation }) {
     let perm = await MediaLibrary.getPermissionsAsync();
 
     if (perm.status != 'granted') {
-      let perm = await MediaLibrary.getPermissionsAsync();
+      let perm = await MediaLibrary.requestPermissionsAsync();
       if (perm.status != 'granted') {
         Alert.alert(
           "Audio não foi salvo",
@@ -40,13 +40,13 @@ export default function Home({ navigation }) {
     try {
 
       const asset = await MediaLibrary.createAssetAsync(audioFileAssetObject[0].localUri);
-      const album = await MediaLibrary.getAlbumAsync('IFPads');
+      // const album = await MediaLibrary.getAlbumAsync('IFPads');
 
-      if (album == null) {
-        await MediaLibrary.createAlbumAsync('IFPads', asset, false);
-      } else {
-        await MediaLibrary.addAssetsToAlbumAsync([asset], album, false);
-      }
+      // if (album == null) {
+      //   await MediaLibrary.createAlbumAsync('IFPads', asset, false);
+      // } else {
+      //   await MediaLibrary.addAssetsToAlbumAsync([asset], album, false);
+      // }
 
       Alert.alert(
         "Audio salvo",

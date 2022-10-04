@@ -16,6 +16,11 @@ export function AudioContextProvider(props) {
 
   const [sound, setSound] = useState();
 
+  const handleChangeTema = async (selectedTema) => {
+    setTema(selectedTema)
+    await AsyncStorage.setItem('@theme', selectedTema)
+
+  }
   const handleSetPadColor = async (color) => {
     setpadColor(color)
     await AsyncStorage.setItem('@color_pad', color)
@@ -48,11 +53,16 @@ export function AudioContextProvider(props) {
   useEffect(() => {
     const getData = async () => {
       try {
+        let themeStorage = await AsyncStorage.getItem('@theme')
         let cp = await AsyncStorage.getItem('@color_pad')
         let cpt = await AsyncStorage.getItem('@color_pad_text')
 
         let value = await AsyncStorage.getItem('@my_pad')
 
+        if (themeStorage == null) {
+          await AsyncStorage.setItem('@theme', "white")
+        }
+        
         if (cp == null) {
           await AsyncStorage.setItem('@color_pad', "#FF0000")
         }
@@ -77,7 +87,7 @@ export function AudioContextProvider(props) {
           value,
           ...Pads
         ]
-
+        setTema(themeStorage != null ? themeStorage : 'white')
         setpadColor(cp != null ? cp : '#FF0000')
         setpadTextColor(cpt != null ? cpt : '#000000')
         setPads(padList);
@@ -110,7 +120,7 @@ export function AudioContextProvider(props) {
         padColor, setpadColor, handleSetPadColor,
         padTextColor, setpadTextColor, handleSetPadTextColor,
         favPad, setFavPad,
-        tema, setTema
+        tema, setTema, handleChangeTema
       }}
     >
       {props.children}

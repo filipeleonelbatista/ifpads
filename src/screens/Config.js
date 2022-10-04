@@ -30,7 +30,7 @@ const colors = [
 ]
 
 export default function ConfigScreen({ navigation }) {
-  const { padColor, handleSetPadColor, padTextColor, handleSetPadTextColor, tema, setTema } = useAudioContext();
+  const { padColor, handleSetPadColor, padTextColor, handleSetPadTextColor, tema, handleChangeTema } = useAudioContext();
 
   const handlePix = () => {
     Clipboard.setStringAsync(
@@ -142,7 +142,7 @@ export default function ConfigScreen({ navigation }) {
           accessibilityViewIsModal={true}
           accessibilityElementsHidden={true}
           onPress={() => {
-            setTema(tema === 'dark' ? 'white' : 'dark')
+            handleChangeTema(tema === 'dark' ? 'white' : 'dark')
           }}
           style={{
             padding: 15,
