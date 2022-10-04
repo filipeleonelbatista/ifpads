@@ -24,13 +24,19 @@ export default function Home({ navigation }) {
 
     const audioFileAssetObject = await Asset.loadAsync(audio.source);
 
-    const perm = await MediaLibrary.getPermissionsAsync();
+    let perm = await MediaLibrary.requestPermissionsAsync();
+    console.log("ta aqui",perm)
 
     if (perm.status != 'granted') {
+      Alert.alert(
+        "Audio não foi salvo",
+        "Precisa liberar as permissões de acesso aos arquivos",
+      )
       return;
     }
 
     try {
+
       const asset = await MediaLibrary.createAssetAsync(audioFileAssetObject[0].localUri);
       const album = await MediaLibrary.getAlbumAsync('IFPads');
 
@@ -46,6 +52,10 @@ export default function Home({ navigation }) {
       )
     } catch (e) {
       console.error(e);
+      Alert.alert(
+        "Erro",
+        "Houve um problema ao salvar, verifique as permissões do app.",
+      )
     }
   }
 
