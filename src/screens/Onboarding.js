@@ -49,8 +49,6 @@ export default function Onboarding({ navigation }) {
   useEffect(() => {
     if (isFocused) {
       const executeAsync = async () => {
-
-        await AsyncStorage.clear();
         try {
           const value = await AsyncStorage.getItem('@onboarding')
           if (value !== null) {

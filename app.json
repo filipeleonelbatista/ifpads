@@ -12,17 +12,29 @@
       "backgroundColor": "#000000"
     },
     "updates": {
-      "enabled":false,
+      "enabled": false,
       "fallbackToCacheTimeout": 0
     },
-    "assetBundlePatterns": ["**/*"],
+    "assetBundlePatterns": [
+      "**/*"
+    ],
     "ios": {
       "supportsTablet": true,
       "bundleIdentifier": "com.instinctfamily.ifpads",
-      "buildNumber": "1.2.0"
+      "buildNumber": "1.2.0",
+      "infoPlist": {
+        "NSPhotoLibraryUsageDescription": "Permitir que $(PRODUCT_NAME) acesse suas fotos.",
+        "NSPhotoLibraryAddUsageDescription": "Permitir que $(PRODUCT_NAME) salve fotos."
+      }
     },
     "android": {
-      "permissions":["READ_EXTERNAL_STORAGE", "WRITE_EXTERNAL_STORAGE"],
+      "permissions": [
+        "READ_EXTERNAL_STORAGE",
+        "WRITE_EXTERNAL_STORAGE",
+        "android.permission.READ_EXTERNAL_STORAGE",
+        "android.permission.WRITE_EXTERNAL_STORAGE",
+        "android.permission.ACCESS_MEDIA_LOCATION"
+      ],
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#000000"
@@ -42,6 +54,11 @@
           "isAccessMediaLocationEnabled": true
         }
       ]
-    ]
+    ],
+    "extra": {
+      "eas": {
+        "projectId": "17711181-7866-4074-ba0c-5729d6e3074c"
+      }
+    }
   }
 }

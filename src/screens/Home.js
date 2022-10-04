@@ -24,15 +24,17 @@ export default function Home({ navigation }) {
 
     const audioFileAssetObject = await Asset.loadAsync(audio.source);
 
-    let perm = await MediaLibrary.requestPermissionsAsync();
-    console.log("ta aqui",perm)
+    let perm = await MediaLibrary.getPermissionsAsync();
 
     if (perm.status != 'granted') {
-      Alert.alert(
-        "Audio não foi salvo",
-        "Precisa liberar as permissões de acesso aos arquivos",
-      )
-      return;
+      let perm = await MediaLibrary.getPermissionsAsync();
+      if (perm.status != 'granted') {
+        Alert.alert(
+          "Audio não foi salvo",
+          "Precisa liberar as permissões de acesso aos arquivos",
+        )
+        return;
+      }
     }
 
     try {
@@ -51,7 +53,6 @@ export default function Home({ navigation }) {
         "O audio foi salvo em " + asset.uri.replace("file://", "").replace(asset.filename, ""),
       )
     } catch (e) {
-      console.error(e);
       Alert.alert(
         "Erro",
         "Houve um problema ao salvar, verifique as permissões do app.",

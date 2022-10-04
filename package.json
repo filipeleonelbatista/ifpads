@@ -10,7 +10,7 @@
     "web": "expo start --web",
     "eject": "expo eject",
     "build": "expo build:android",
-    "eas:build:test": "eas build -p android --profile test",
+    "eas:build:preview": "eas build -p android --profile preview",
     "eas:build:production": "eas build -p android --profile production"
   },
   "dependencies": {
