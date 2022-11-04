@@ -18,7 +18,7 @@ import { theme } from "../styles/theme";
 const numColumns = 4;
 
 export default function Home({ navigation }) {
-  const { selectedPad, playSound, padColor, padTextColor, tema } = useAudioContext();
+  const { selectedPad, isMyPad, showTiltButton, playRandomAudio, playSound, padColor, padTextColor, tema } = useAudioContext();
 
   const saveAudio = async (audio) => {
 
@@ -131,6 +131,32 @@ export default function Home({ navigation }) {
           />
         </TouchableOpacity>
       </View>
+      {
+        (isMyPad && showTiltButton) && (
+          <View
+            style={{
+              width: Dimensions.get("screen").width,
+              height: 100,
+              paddingHorizontal: 20,
+              alignItems: 'center',
+              justifyContent: 'center'
+            }}
+          >
+            <TouchableOpacity
+              onPress={() => {
+                playRandomAudio()
+              }}
+              style={{
+                ...styles.button,
+                backgroundColor: padColor,
+                width: Dimensions.get("screen").width - 20,
+              }}
+            >
+              <Text style={{ color: padTextColor }}>TILT!</Text>
+            </TouchableOpacity>
+          </View>
+        )
+      }
       {
         selectedPad.sounds.length > 0
           ? (

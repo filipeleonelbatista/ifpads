@@ -1,4 +1,4 @@
-import { FontAwesome, Ionicons } from "@expo/vector-icons";
+import { AntDesign, FontAwesome, Ionicons } from "@expo/vector-icons";
 import { StatusBar as ExpoStatusBar } from "expo-status-bar";
 import {
   Alert,
@@ -30,7 +30,7 @@ const colors = [
 ]
 
 export default function ConfigScreen({ navigation }) {
-  const { padColor, handleSetPadColor, padTextColor, handleSetPadTextColor, tema, handleChangeTema } = useAudioContext();
+  const { padColor, showTiltButton, handleSetPadColor, handleChangeTiltState, padTextColor, handleSetPadTextColor, tema, handleChangeTema } = useAudioContext();
 
   const handlePix = () => {
     Clipboard.setStringAsync(
@@ -133,6 +133,29 @@ export default function ConfigScreen({ navigation }) {
 
 
         <Button text="Editar seu pad" onPress={() => navigation.navigate("MyPadScreen")} />
+
+        <TouchableOpacity
+          accessible={true}
+          accessibilityLabel={"Botão para habilitar ou desabilitar modo tilt no meu pad!"}
+          accessibilityTraits={"button"}
+          accessibilityComponentType={"button"}
+          accessibilityViewIsModal={true}
+          accessibilityElementsHidden={true}
+          onPress={() => {
+            handleChangeTiltState()
+          }}
+          style={{
+            padding: 15,
+            marginVertical: 8,
+            borderRadius: 8,
+            backgroundColor: theme[tema].color,
+          }}
+        >
+          <View style={{ flexDirection: "row", alignItems: "center" }}>
+            <AntDesign color={theme[tema].background} name={"sound"} size={22} />
+            <Text style={{ marginLeft: 10, color: theme[tema].background }}>{showTiltButton ? "Desabilitar Tilt" : "Habilitar Tilt"}</Text>
+          </View>
+        </TouchableOpacity>
 
         <TouchableOpacity
           accessible={true}

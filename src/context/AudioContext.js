@@ -13,8 +13,21 @@ export function AudioContextProvider(props) {
   const [padTextColor, setpadTextColor] = useState("#000000");
   const [favPad, setFavPad] = useState(1);
   const [selectedPad, setSelectedPad] = useState(null);
+  const [showTiltButton, setShowTiltButton] = useState(false)
+  const [isMyPad, setIsMyPad] = useState(false)
 
   const [sound, setSound] = useState();
+
+  const handleChangeTiltState = async () => {
+    setShowTiltButton(!showTiltButton)
+    await AsyncStorage.setItem('@showTiltButton', JSON.stringify(!showTiltButton))
+  }
+
+  const playRandomAudio = async () => {
+    const selectedIndexPad = Math.floor(Math.random() * pads.length)
+    const selectedIndexAudio = Math.floor(Math.random() * pads[selectedIndexPad].sounds.length)
+    await playSound(pads[selectedIndexPad].sounds[selectedIndexAudio].source)
+  }
 
   const handleChangeTema = async (selectedTema) => {
     setTema(selectedTema)
@@ -43,6 +56,13 @@ export function AudioContextProvider(props) {
   };
 
   useEffect(() => {
+    if (pads) {
+      const isMyPad = pads.findIndex(pad => pad.userName === selectedPad.userName) === 0
+      setIsMyPad(isMyPad)
+    }
+  }, [selectedPad])
+
+  useEffect(() => {
     return sound
       ? () => {
         sound.unloadAsync();
@@ -54,6 +74,7 @@ export function AudioContextProvider(props) {
     const getData = async () => {
       try {
         let themeStorage = await AsyncStorage.getItem('@theme')
+        let ts = await AsyncStorage.getItem('@showTiltButton')
         let cp = await AsyncStorage.getItem('@color_pad')
         let cpt = await AsyncStorage.getItem('@color_pad_text')
 
@@ -62,7 +83,11 @@ export function AudioContextProvider(props) {
         if (themeStorage == null) {
           await AsyncStorage.setItem('@theme', "white")
         }
-        
+
+        if (ts == null) {
+          await AsyncStorage.setItem('@showTiltButton', JSON.stringify(false))
+        }
+
         if (cp == null) {
           await AsyncStorage.setItem('@color_pad', "#FF0000")
         }
@@ -87,6 +112,7 @@ export function AudioContextProvider(props) {
           value,
           ...Pads
         ]
+        setShowTiltButton(ts != null ? JSON.parse(ts) : false)
         setTema(themeStorage != null ? themeStorage : 'white')
         setpadColor(cp != null ? cp : '#FF0000')
         setpadTextColor(cpt != null ? cpt : '#000000')
@@ -104,10 +130,6 @@ export function AudioContextProvider(props) {
     console.log("Pads atualizados!");
   }, [pads]);
 
-  useEffect(() => {
-    console.log("Pad atualizado!");
-  }, [selectedPad]);
-
   return (
     <AudioContext.Provider
       value={{
@@ -120,7 +142,11 @@ export function AudioContextProvider(props) {
         padColor, setpadColor, handleSetPadColor,
         padTextColor, setpadTextColor, handleSetPadTextColor,
         favPad, setFavPad,
-        tema, setTema, handleChangeTema
+        tema, setTema, handleChangeTema,
+        showTiltButton,
+        playRandomAudio,
+        handleChangeTiltState,
+        isMyPad,
       }}
     >
       {props.children}

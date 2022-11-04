@@ -2,7 +2,7 @@
   "expo": {
     "name": "IF Pads",
     "slug": "if-pads",
-    "version": "1.2.0",
+    "version": "1.21.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "userInterfaceStyle": "light",
@@ -20,8 +20,8 @@
     ],
     "ios": {
       "supportsTablet": true,
-      "bundleIdentifier": "com.instinctfamily.ifpads",
-      "buildNumber": "1.2.0",
+      "bundleIdentifier": "com.ifpads.streamers",
+      "buildNumber": "1.21.0",
       "infoPlist": {
         "NSPhotoLibraryUsageDescription": "Permitir que $(PRODUCT_NAME) acesse suas fotos.",
         "NSPhotoLibraryAddUsageDescription": "Permitir que $(PRODUCT_NAME) salve fotos."
@@ -37,8 +37,8 @@
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#000000"
       },
-      "package": "com.instinctfamily.ifpads",
-      "versionCode": 13
+      "package": "com.ifpads.streamers",
+      "versionCode": 2
     },
     "web": {
       "favicon": "./assets/favicon.png"
