@@ -38,7 +38,6 @@ export default function RemoteControl({ navigation }) {
   const sendCommand = async (command) => {
     try {
       const serverStatusResponse = await api.get("/status")
-      console.log("cheguei", serverStatusResponse)
 
       if (serverStatusResponse.data.status) {
         const response = await api.post("/audio", {
@@ -52,8 +51,6 @@ export default function RemoteControl({ navigation }) {
           "Erro ao enviar dados para o servidor."
         );
       }
-
-
     } catch (err) {
       console.log(err)
       Alert.alert(
