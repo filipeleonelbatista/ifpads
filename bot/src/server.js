@@ -10,8 +10,7 @@ var app = express();
 app.use(cors());
 app.use(express.json());
 
-const regexpCommand = new RegExp(/^!([a-zA-z0-9]+)(?:\W+)?(.*)?/);
-
+// const regexpCommand = new RegExp(/^!([a-zA-z0-9]+)(?:\W+)?(.*)?/);
 
 const client = new tmi.Client({
   connection: {
@@ -29,23 +28,31 @@ const client = new tmi.Client({
 
 client.connect();
 
-client.on("message", (channel, tags, message, self) => {
-  // const isNotBot = tags.username.toLocaleLowerCase() !== process.env.TWITCH_BOT_USERNAME;
+// client.on("message", (channel, tags, message, self) => {
+//   // const isNotBot = tags.username.toLocaleLowerCase() !== process.env.TWITCH_BOT_USERNAME;
 
-  // if (!isNotBot) return;
+//   // if (!isNotBot) return;
 
-  if (message) {
-    const [raw, command, argument] = message.match(regexpCommand);
-    if (command === "ping") {
-      client.say("Status do bot: Ok")
-      console.log("Status do bot: Ok")
-    }
-  }
+//   if (message) {
+//     const [raw, command, argument] = message.match(regexpCommand);
+//     if (command === "ping") {
+//       client.say("Status do bot: Ok")
+//       console.log("Status do bot: Ok")
+//     }
+//   }
 
-})
+// })
 
 app.get('/status', async (req, res) => {
   const databaseResult = await db('users').select("*").first()
+
+  console.log("---- CHAMADA /status ----")
+  console.log("---- Status servidor ----")
+  console.log({
+    status: true,
+    data: databaseResult,
+  })
+
   return res.status(200).json({
     status: true,
     data: databaseResult,
@@ -54,6 +61,10 @@ app.get('/status', async (req, res) => {
 
 app.post('/user', async (req, res) => {
   const { twitchUser } = req.body;
+
+  console.log("---- CHAMADA /user ----")
+  console.log("---- Adicionando usuario na lista de permissões ----")
+  console.log({ twitchUser })
 
   try {
     const insertDatabaseResult = await db("users").insert({
@@ -76,6 +87,10 @@ app.post('/user', async (req, res) => {
 
 app.post('/audio', async (req, res) => {
   const { twitchUser, command, channel } = req.body;
+
+  console.log("---- CHAMADA /audio ----")
+  console.log("---- Adicionando mensagem na fila ----")
+  console.log({ twitchUser, command, channel })
 
   const databaseResult = await db('users').select("*").where("name", "=", twitchUser).first()
 
