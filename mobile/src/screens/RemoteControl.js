@@ -3,7 +3,7 @@ import axios from 'axios';
 import { StatusBar as ExpoStatusBar } from "expo-status-bar";
 import { useState } from 'react';
 import {
-  ActivityIndicator, Dimensions,
+  ActivityIndicator, Alert, Dimensions,
   FlatList, Image, Platform,
   SafeAreaView,
   StatusBar,
@@ -37,13 +37,29 @@ export default function RemoteControl({ navigation }) {
 
   const sendCommand = async (command) => {
     try {
-      const response = await api.post("/audio", {
-        twitchUser,
-        command,
-        channel: selectedRemoteControl.name
-      })
+      const serverStatusResponse = await api.get("/status")
+      console.log("cheguei", serverStatusResponse)
+
+      if (serverStatusResponse.data.status) {
+        const response = await api.post("/audio", {
+          twitchUser,
+          command,
+          channel: selectedRemoteControl.name
+        })
+      } else {
+        Alert.alert(
+          "Houve um erro",
+          "Erro ao enviar dados para o servidor."
+        );
+      }
+
+
     } catch (err) {
       console.log(err)
+      Alert.alert(
+        "Houve um erro",
+        "Erro ao conectar no servidor."
+      );
     }
   }
 
