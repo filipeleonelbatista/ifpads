@@ -44,25 +44,32 @@ client.connect();
 // })
 
 app.get('/status', async (req, res) => {
-  const databaseResult = await db('users').select("*").first()
+  try {
+    const databaseResult = await db('users').select("*").first()
 
-  console.log("---- CHAMADA /status ----")
-  console.log("---- Status servidor ----")
-  console.log({
-    status: true,
-    data: databaseResult,
-  })
+    console.log("---- CHAMADA GET /status ----")
+    console.log("---- Status servidor ----")
+    console.log({
+      status: true,
+      data: databaseResult,
+    })
 
-  return res.status(200).json({
-    status: true,
-    data: databaseResult,
-  })
+    return res.status(200).json({
+      status: true,
+      data: databaseResult
+    })
+  } catch (error) {
+    return res.status(500).json({
+      status: false,
+      data: error
+    })
+  }
 })
 
 app.post('/user', async (req, res) => {
   const { twitchUser } = req.body;
 
-  console.log("---- CHAMADA /user ----")
+  console.log("---- CHAMADA POST /user ----")
   console.log("---- Adicionando usuario na lista de permissões ----")
   console.log({ twitchUser })
 
@@ -81,14 +88,17 @@ app.post('/user', async (req, res) => {
   }
   catch (error) {
     console.log(error)
-    return res.status(400).json(error)
+    return res.status(500).json({
+      status: false,
+      data: error
+    })
   }
 })
 
 app.post('/audio', async (req, res) => {
   const { twitchUser, command, channel } = req.body;
 
-  console.log("---- CHAMADA /audio ----")
+  console.log("---- CHAMADA POST /audio ----")
   console.log("---- Adicionando mensagem na fila ----")
   console.log({ twitchUser, command, channel })
 
@@ -103,23 +113,64 @@ app.post('/audio', async (req, res) => {
         isSended: false,
       })
 
+      console.log("To porraqui", insertDatabaseResult)
+
       if (insertDatabaseResult.errno) {
         return res.status(500).json(insertDatabaseResult)
       }
 
       if (insertDatabaseResult.length > 0) {
-        return res.status(201).json({ message: "ok" })
+        return res.status(201).json({
+          status: true,
+          data: {
+            name: twitchUser,
+            command,
+            channel,
+            isSended: false,
+          },
+          row: insertDatabaseResult
+        })
       }
     }
     catch (error) {
       console.log(error)
-      return res.status(400).json(error)
+      return res.status(500).json({
+        status: false,
+        data: error
+      })
     }
+  } else {
+    return res.status(500).json({
+      status: false,
+      data: databaseResult
+    })
   }
 
 });
 
-cron.schedule("*/3 * * * * *", () => {
+app.get('/audio', async (req, res) => {
+
+  try {
+    const databaseResult = await db('messages').select("*").limit(10)
+
+    console.log("---- CHAMADA GET /audio ----")
+    console.log("---- Listando ultimas 10 mensagens ----")
+    console.log(databaseResult)
+
+    return res.status(200).json({
+      status: true,
+      data: databaseResult
+    })
+  } catch (error) {
+    return res.status(500).json({
+      status: false,
+      data: error
+    })
+  }
+
+});
+
+cron.schedule("*/5 * * * * *", () => {
   const executeAsync = async () => {
     console.log("---- Executando Cron Envio de Mensagens ----")
     const lastMessageNotSend = await db("messages").select("*").where("isSended", "=", false)
@@ -127,11 +178,25 @@ cron.schedule("*/3 * * * * *", () => {
 
 
     if (lastMessageNotSend) {
-      client.say(lastMessageNotSend.channel, lastMessageNotSend.command)
+      try {
+        await client.say(lastMessageNotSend.channel, lastMessageNotSend.command)
 
-      await db("messages").where("id", "=", lastMessageNotSend.id).update({
-        isSended: true
-      })
+        console.log("---- Mensagem Enviada ----")
+        console.log(lastMessageNotSend)
+
+        await db("messages").where("id", "=", lastMessageNotSend.id).update({
+          isSended: true
+        })
+
+      } catch (error) {
+        console.log("---- Nenhuma Mensagem Enviada ----")
+        console.log({
+          status: false,
+          data: error
+        })
+      }
+    } else {
+      console.log("---- Nenhuma Mensagem Enviada ----")
     }
 
   }
