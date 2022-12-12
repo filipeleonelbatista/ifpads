@@ -10,8 +10,6 @@ var app = express();
 app.use(cors());
 app.use(express.json());
 
-// const regexpCommand = new RegExp(/^!([a-zA-z0-9]+)(?:\W+)?(.*)?/);
-
 const client = new tmi.Client({
   connection: {
     reconnect: true,
@@ -27,21 +25,6 @@ const client = new tmi.Client({
 });
 
 client.connect();
-
-// client.on("message", (channel, tags, message, self) => {
-//   // const isNotBot = tags.username.toLocaleLowerCase() !== process.env.TWITCH_BOT_USERNAME;
-
-//   // if (!isNotBot) return;
-
-//   if (message) {
-//     const [raw, command, argument] = message.match(regexpCommand);
-//     if (command === "ping") {
-//       client.say("Status do bot: Ok")
-//       console.log("Status do bot: Ok")
-//     }
-//   }
-
-// })
 
 app.get('/status', async (req, res) => {
   try {
