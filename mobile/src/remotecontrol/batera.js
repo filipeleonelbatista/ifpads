@@ -26,7 +26,7 @@ export default {
       "!fila",
     ],
     audios: [
-      "!tistresa",
+      "!tistreza",
       "!100mm",
       "!4k",
       "!4fun",

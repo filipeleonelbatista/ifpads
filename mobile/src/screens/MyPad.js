@@ -21,14 +21,14 @@ export default function MyPadScreen({ navigation }) {
 
   const isFocused = useIsFocused();
 
-  const { setPads, loadPreset, tema } = useAudioContext();
+  const { setPads, loadPreset, tema, playSound } = useAudioContext();
 
   const [padName, setPadName] = useState('');
   const [soundList, setSoundList] = useState([])
   const [selectedImage, setSelectedImage] = useState(null)
   const [myPadAccordeon, setMyPadAcordeon] = useState(true)
   const [padsAccordeon, setPadsAcordeon] = useState(true)
-
+  
   function handleAddSoundToMyPad(sound) {
     setSoundList([...soundList, sound])
   }
@@ -188,7 +188,7 @@ export default function MyPadScreen({ navigation }) {
                       marginVertical: 8,
                     }}>
                     <Text
-                      style={{ color: theme[tema].color, fontWeight: 'bold', fontSize: 18 }}
+                      style={{ color: theme[tema].color, fontWeight: 'bold', fontSize: 14 }}
                     >
                       {sound.title}
                     </Text>
@@ -274,12 +274,50 @@ export default function MyPadScreen({ navigation }) {
                           alignItems: 'center',
                           justifyContent: 'space-between',
                           marginVertical: 8,
+                          backgroundColor: theme[tema].background_secondary,
+                          padding: 8,
+                          borderRadius: 8,
                         }}>
-                          <Text
-                            style={{ color: theme[tema].color, fontWeight: 'bold', fontSize: 18 }}
-                          >
-                            {pad.userName}{"\n"}{sound.title}
-                          </Text>
+                          <View style={{
+                            flexDirection: 'row'
+                          }}>
+                            <TouchableOpacity
+                              accessible={true}
+                              accessibilityLabel={
+                                "Tocar"
+                              }
+                              accessibilityTraits={"button"}
+                              accessibilityComponentType={"button"}
+                              accessibilityViewIsModal={true}
+                              accessibilityElementsHidden={true}
+                              onPress={() => playSound(sound.source)}
+                              style={{
+                                width: 48,
+                                height: 48,
+                                borderRadius: 24,
+                                backgroundColor: "#28a745",
+                                alignItems: 'center',
+                                justifyContent: 'center',
+                                marginRight: 8,
+                              }}
+                            >
+                              <View style={{ flexDirection: "row", alignItems: "center" }}>
+                                <FontAwesome name="play" size={22} color={theme[tema].background} />
+                              </View>
+                            </TouchableOpacity>
+                            <View>
+                              <Text
+                                style={{ color: theme[tema].color, fontWeight: 'bold', fontSize: 14 }}
+                              >
+                                {pad.userName}
+                              </Text>
+                              <Text
+                                style={{ color: theme[tema].color, fontWeight: 'normal', fontSize: 16 }}
+                              >
+                                {sound.title}
+                              </Text>
+                            </View>
+                          </View>
                           <TouchableOpacity
                             accessible={true}
                             accessibilityLabel={
