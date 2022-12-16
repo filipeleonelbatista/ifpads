@@ -243,7 +243,7 @@ function DrawerComponent({ title, children }) {
           }}
         >
           <Toolbar />
-          <Container maxWidth="lg" sx={{ mt: 4, mb: 4 }}>
+          <Container maxWidth="lg" sx={{ mt: 1, mb: 1 }}>
             {children}
             <Copyright sx={{ pt: 4 }} />
           </Container>
