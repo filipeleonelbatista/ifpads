@@ -4,6 +4,8 @@ import Config from './pages/Config';
 import MyPad from './pages/MyPad';
 import Pads from './pages/Pads';
 
+import './styles/globals.css'
+
 export default function App() {
   return (
     <AudioContextProvider>
