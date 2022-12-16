@@ -1,19 +1,39 @@
 
+import { Box, CircularProgress, ListItemIcon } from "@mui/material";
 import React from "react";
-import { useLocation } from "react-router-dom";
 import DrawerComponent from "../components/DrawerComponent";
 import PadButton from "../components/PadButton";
+import { useAudio } from "../hooks/useAudio";
 
 function Pads() {
-  let { state } = useLocation();
+  const { selectedPad, playSound, isMyPad, showTiltButton, playRandomAudio } = useAudio();
 
-  React.useEffect(() => {
-    console.log("pad_id", state)
-  }, [state])
-  
+  if (!selectedPad) {
+    return (
+      <ListItemIcon>
+        <Box sx={{ display: 'flex' }}>
+          <CircularProgress />
+        </Box>
+      </ListItemIcon>
+    )
+  }
+
   return (
-    <DrawerComponent title="Pads">
-      <PadButton title="Teste" onClick={() => alert("Teste")} />
+    <DrawerComponent title={selectedPad.userName}>
+      <Box sx={{ display: "flex", flexWrap: 'wrap', gap: 1, overflow: 'auto', p: 1 }}>
+        {
+          (isMyPad && showTiltButton) && (
+            <PadButton fullWidth title="Tilt!" onClick={() => playRandomAudio()} />
+          )
+        }
+      </Box>
+      <Box sx={{ display: "flex", flexWrap: 'wrap', gap: 1, overflow: 'auto', p: 1 }}>
+        {
+          selectedPad.sounds.map((sound, index) => (
+            <PadButton key={index} title={sound.title} onClick={() => playSound(sound.source)} />
+          ))
+        }
+      </Box>
     </DrawerComponent>
   )
 }

@@ -1,18 +1,17 @@
 import { MemoryRouter as Router, Route, Routes } from 'react-router-dom';
-import Pads from './pages/Pads';
+import { AudioContextProvider } from './context/AudioContext';
 import Config from './pages/Config';
-import { AudioContext } from './context/AudioContext';
+import Pads from './pages/Pads';
 
 export default function App() {
   return (
-    <AudioContext.Provider>
+    <AudioContextProvider>
       <Router>
         <Routes>
           <Route path="/" element={<Pads />} />
-          <Route path="/:pad_id" element={<Pads />} />
           <Route path="/configuracoes" element={<Config />} />
         </Routes>
       </Router >
-    </AudioContext.Provider>
+    </AudioContextProvider>
   );
 }

@@ -6,6 +6,7 @@ import UserImage from "../assets/images/user.png"
 export const AudioContext = createContext({});
 
 export function AudioContextProvider(props) {
+  const sound = new Audio()
 
   const [tema, setTema] = useState('white');
   const [pads, setPads] = useState(false);
@@ -13,8 +14,8 @@ export function AudioContextProvider(props) {
   const [padTextColor, setpadTextColor] = useState("#000000");
   const [favPad, setFavPad] = useState(1);
   const [selectedPad, setSelectedPad] = useState(null);
-  const [showTiltButton, setShowTiltButton] = useState(false)
-  const [isMyPad, setIsMyPad] = useState(false)
+  const [showTiltButton, setShowTiltButton] = useState(true)
+  const [isMyPad, setIsMyPad] = useState(true)
 
   const handleChangeTiltState = async () => {
     setShowTiltButton(!showTiltButton)
@@ -43,9 +44,9 @@ export function AudioContextProvider(props) {
 
   async function playSound(source) {
     if (!source) return;
-    const { sound } = await Audio.Sound.createAsync(source);
-    setSound(sound);
-    await sound.playAsync();
+    // const sound = new Audio(source);
+    sound.src = source
+    await sound.play();
   }
 
   const loadPreset = (userPreset) => {
@@ -60,18 +61,9 @@ export function AudioContextProvider(props) {
   }, [selectedPad])
 
   useEffect(() => {
-    return sound
-      ? () => {
-        sound.unloadAsync();
-      }
-      : undefined;
-  }, [sound]);
-
-  useEffect(() => {
     const getData = async () => {
       try {
         let themeStorage = localStorage.getItem('@theme')
-        let tu = localStorage.getItem('@twitchUser')
         let ts = localStorage.getItem('@showTiltButton')
         let cp = localStorage.getItem('@color_pad')
         let cpt = localStorage.getItem('@color_pad_text')
@@ -84,10 +76,6 @@ export function AudioContextProvider(props) {
 
         if (ts == null) {
           localStorage.setItem('@showTiltButton', JSON.stringify(false))
-        }
-
-        if (tu == null) {
-          localStorage.setItem('@twitchUser', "")
         }
 
         if (cp == null) {
@@ -114,15 +102,12 @@ export function AudioContextProvider(props) {
           value,
           ...Pads
         ]
-        setTwitchUser(tu != null ? tu : "")
         setShowTiltButton(ts != null ? JSON.parse(ts) : false)
         setTema(themeStorage != null ? themeStorage : 'white')
         setpadColor(cp != null ? cp : '#FF0000')
         setpadTextColor(cpt != null ? cpt : '#000000')
         setPads(padList);
         loadPreset(padList[favPad]);
-        setRemoteControls([...RemoteControls])
-        setSelectedRemoteControl(RemoteControls[0])
 
       } catch (e) {
         console.error(e)
@@ -151,10 +136,7 @@ export function AudioContextProvider(props) {
         showTiltButton,
         playRandomAudio,
         handleChangeTiltState,
-        isMyPad,
-        remoteControls,
-        selectedRemoteControl,
-        setSelectedRemoteControl,
+        isMyPad
       }}
     >
       {props.children}

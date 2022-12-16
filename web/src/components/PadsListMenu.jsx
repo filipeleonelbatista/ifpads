@@ -1,27 +1,31 @@
-import { Avatar, ListItemButton, ListItemIcon, ListItemText, Tooltip } from "@mui/material";
+import { Avatar, Box, CircularProgress, ListItemButton, ListItemIcon, ListItemText, Tooltip } from "@mui/material";
 import { useLocation, useNavigate } from "react-router-dom";
-
-import DefaultLogo from '../assets/logo.png';
-import Pads from '../sets/index';
+import { useAudio } from "../hooks/useAudio";
 
 function PadsListMenu() {
-  const navigate = useNavigate();
-  const location = useLocation();
+  const { selectedPad, loadPreset, pads } = useAudio();
+  const navigate = useNavigate()
+  const location = useLocation()
+
+  if (!selectedPad) {
+    return (
+      <ListItemIcon>
+        <Box sx={{ display: 'flex' }}>
+          <CircularProgress />
+        </Box>
+      </ListItemIcon>
+    )
+  }
 
   return (
     <>
-      <Tooltip placement="right" title="Meu Pad">
-        <ListItemButton selected={location.pathname === "/"} onClick={() => navigate("/")}>
-          <ListItemIcon>
-            <Avatar alt='Avatar' src={DefaultLogo} sx={{ width: 24, height: 24 }} />
-          </ListItemIcon>
-          <ListItemText primary="Meu Pad" />
-        </ListItemButton>
-      </Tooltip>
       {
-        Pads.map((pad, index) => (
+        pads.map((pad, index) => (
           <Tooltip key={index} placement="right" title={pad.userName}>
-            <ListItemButton selected={location.pathname === `/${pad.userName.toLowerCase()}`} onClick={() => navigate(`/`, { state: { pad_id: pad.userName.toLowerCase() } })}>
+            <ListItemButton selected={pad.userName === selectedPad.userName && location.pathname === "/"} onClick={() => {
+              loadPreset(pad)
+              navigate('/')
+            }}>
               <ListItemIcon>
                 <Avatar alt='Avatar' src={pad.image} sx={{ width: 24, height: 24 }} />
               </ListItemIcon>
