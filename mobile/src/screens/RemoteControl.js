@@ -15,11 +15,12 @@ import { ScrollView } from 'react-native-gesture-handler';
 import { useAudioContext } from "../hooks/useAudioContext";
 import api from '../services';
 import { theme } from "../styles/theme";
+import { remove } from 'remove-accents'
 
 const numColumns = 4;
 
 export default function RemoteControl({ navigation }) {
-  const { padColor, twitchUser, selectedRemoteControl, setSelectedRemoteControl, remoteControls, padTextColor, tema } = useAudioContext();
+  const { padColor, checkIfTwitchUserFollowsChannel, twitchUser, selectedRemoteControl, setSelectedRemoteControl, remoteControls, padTextColor, tema } = useAudioContext();
 
   const [selectedTab, setSelectedTab] = useState("commands")
 
@@ -36,27 +37,46 @@ export default function RemoteControl({ navigation }) {
   )
 
   const sendCommand = async (command) => {
-    try {
-      const serverStatusResponse = await api.get("/status")
+    let status = false;
 
-      if (serverStatusResponse.data.status) {
-        const response = await api.post("/audio", {
-          twitchUser,
-          command,
-          channel: selectedRemoteControl.name
-        })
-      } else {
+    try {
+      const result = await checkIfTwitchUserFollowsChannel(selectedRemoteControl.name, command)
+      status = result
+    } catch (error) {
+      status = false
+    }
+
+    if (status) {
+      try {
+        const serverStatusResponse = await api.get("/status")
+
+        if (serverStatusResponse.data.status) {
+          console.log("dados", {
+            twitchUser: remove(String(twitchUser).toLowerCase()),
+            command,
+            channel: selectedRemoteControl.name
+          })
+          const response = await api.post("/audio", {
+            twitchUser: remove(String(twitchUser).toLowerCase()),
+            command,
+            channel: selectedRemoteControl.name
+          })
+
+          console.log("OIIIIIIIIIIIIIII")
+
+        } else {
+          Alert.alert(
+            "Houve um erro",
+            "Erro ao enviar dados para o servidor. Serviço está fora do ar!"
+          );
+        }
+      } catch (err) {
+        console.log(err)
         Alert.alert(
           "Houve um erro",
-          "Erro ao enviar dados para o servidor."
+          "Erro ao conectar no servidor."
         );
       }
-    } catch (err) {
-      console.log(err)
-      Alert.alert(
-        "Houve um erro",
-        "Erro ao conectar no servidor."
-      );
     }
   }
 

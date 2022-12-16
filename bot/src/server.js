@@ -162,7 +162,6 @@ cron.schedule("*/5 * * * * *", () => {
 
     if (lastMessageNotSend) {
       try {
-        // await client.say(lastMessageNotSend.channel, "@"+lastMessageNotSend.name + " enviou: " + lastMessageNotSend.command)
         // await client.say(lastMessageNotSend.channel, lastMessageNotSend.command + " enviado por: @" +lastMessageNotSend.name)
         await client.say(lastMessageNotSend.channel, lastMessageNotSend.command)
 
