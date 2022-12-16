@@ -217,7 +217,7 @@ function DrawerComponent({ title, children }) {
             </Tooltip>
           </Toolbar>
           <Divider />
-          <List component="nav">
+          <List component="nav" sx={{ height: 'calc(100vh - 64px)', overflowY: 'auto', overflowX: 'hidden' }}>
             <PadsListMenu />
             <Divider sx={{ my: 1 }} />
             <Tooltip placement="right" title="Configurações">
