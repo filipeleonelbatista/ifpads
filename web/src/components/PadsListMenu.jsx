@@ -1,9 +1,8 @@
-import SettingsIcon from '@mui/icons-material/Settings';
 import { Avatar, ListItemButton, ListItemIcon, ListItemText, Tooltip } from "@mui/material";
 import { useLocation, useNavigate } from "react-router-dom";
 
-import Pads from '../sets/index'
-import DefaultLogo from '../assets/logo.png'
+import DefaultLogo from '../assets/logo.png';
+import Pads from '../sets/index';
 
 function PadsListMenu() {
   const navigate = useNavigate();
@@ -22,7 +21,7 @@ function PadsListMenu() {
       {
         Pads.map((pad, index) => (
           <Tooltip key={index} placement="right" title={pad.userName}>
-            <ListItemButton selected={location.pathname === `/${pad.userName.toLowerCase()}`} onClick={() => navigate(`/${pad.userName.toLowerCase()}`)}>
+            <ListItemButton selected={location.pathname === `/${pad.userName.toLowerCase()}`} onClick={() => navigate(`/`, { state: { pad_id: pad.userName.toLowerCase() } })}>
               <ListItemIcon>
                 <Avatar alt='Avatar' src={pad.image} sx={{ width: 24, height: 24 }} />
               </ListItemIcon>

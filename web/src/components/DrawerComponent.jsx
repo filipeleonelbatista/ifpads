@@ -220,16 +220,7 @@ function DrawerComponent({ title, children }) {
         >
           <Toolbar />
           <Container maxWidth="lg" sx={{ mt: 4, mb: 4 }}>
-            <Box
-              sx={{
-                w: '100%', borderRadius: 2, p: 4, backgroundColor: (theme) =>
-                  theme.palette.mode === 'light'
-                    ? "#FFF"
-                    : theme.palette.grey[800],
-              }}
-            >
-              {children}
-            </Box>
+            {children}
             <Copyright sx={{ pt: 4 }} />
           </Container>
         </Box>
