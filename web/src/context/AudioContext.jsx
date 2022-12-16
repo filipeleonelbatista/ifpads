@@ -117,7 +117,6 @@ export function AudioContextProvider(props) {
   }, []);
 
   useEffect(() => {
-    console.log("Pads atualizados!");
   }, [pads])
 
   return (

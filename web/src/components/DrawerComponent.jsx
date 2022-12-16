@@ -144,7 +144,6 @@ function DrawerComponent({ title, children }) {
   React.useEffect(() => {
     if (localStorage.getItem("@dark-theme") !== null) {
       const selectedTheme = localStorage.getItem("@dark-theme")
-      console.log("Entrei aqui", selectedTheme)
       setMode(selectedTheme)
     } else {
       localStorage.setItem("@dark-theme", prefersDarkMode ? 'dark' : 'light')
@@ -153,36 +152,39 @@ function DrawerComponent({ title, children }) {
   }, [])
 
   React.useEffect(() => {
-    const handleContextmenu = e => {
-      e.preventDefault()
-    }
-    document.addEventListener('contextmenu', handleContextmenu)
+    console.log("Ambiente", process.env.NODE_ENV)
+    if (process.env.NODE_ENV !== 'development') {
+      const handleContextmenu = e => {
+        e.preventDefault()
+      }
+      document.addEventListener('contextmenu', handleContextmenu)
 
-    document.onkeydown = function (e) {
+      document.onkeydown = function (e) {
 
-      // disable F12 key
-      if (e.keyCode == 123) {
-        return false;
+        // disable F12 key
+        if (e.keyCode == 123) {
+          return false;
+        }
+
+        // disable I key
+        if (e.ctrlKey && e.shiftKey && e.keyCode == 73) {
+          return false;
+        }
+
+        // disable J key
+        if (e.ctrlKey && e.shiftKey && e.keyCode == 74) {
+          return false;
+        }
+
+        // disable U key
+        if (e.ctrlKey && e.keyCode == 85) {
+          return false;
+        }
       }
 
-      // disable I key
-      if (e.ctrlKey && e.shiftKey && e.keyCode == 73) {
-        return false;
+      return function cleanup() {
+        document.removeEventListener('contextmenu', handleContextmenu)
       }
-
-      // disable J key
-      if (e.ctrlKey && e.shiftKey && e.keyCode == 74) {
-        return false;
-      }
-
-      // disable U key
-      if (e.ctrlKey && e.keyCode == 85) {
-        return false;
-      }
-    }
-    
-    return function cleanup() {
-      document.removeEventListener('contextmenu', handleContextmenu)
     }
   }, [])
 
