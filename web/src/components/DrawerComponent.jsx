@@ -85,9 +85,21 @@ const mdTheme = createTheme({
   palette: {
     mode: 'light',
     primary: {
-      main: '#128C7E',
-      dark: '#075E54',
-      light: '#25D366',
+      main: '#566DEA',
+      dark: '#3c4ca3',
+      light: '#778aee',
+      contrastText: "#FFF"
+    },
+    secondary: {
+      main: '#e0e0e0',
+      dark: '#9c9c9c',
+      light: '#e9e9e9',
+      contrastText: "#161616"
+    },
+    twitch: {
+      main: '#6441a5',
+      dark: '#462d73',
+      light: '#927AC0',
       contrastText: "#FFF"
     }
   }
@@ -97,9 +109,21 @@ const mdThemeDark = createTheme({
   palette: {
     mode: 'dark',
     primary: {
-      main: '#128C7E',
-      dark: '#075E54',
-      light: '#25D366',
+      main: '#566DEA',
+      dark: '#3c4ca3',
+      light: '#778aee',
+      contrastText: "#FFF"
+    },
+    secondary: {
+      main: '#e0e0e0',
+      dark: '#9c9c9c',
+      light: '#e9e9e9',
+      contrastText: "#161616"
+    },
+    twitch: {
+      main: '#6441a5',
+      dark: '#462d73',
+      light: '#927AC0',
       contrastText: "#FFF"
     }
   }

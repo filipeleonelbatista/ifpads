@@ -1,5 +1,5 @@
 
-import { Box, CircularProgress, ListItemIcon } from "@mui/material";
+import { Box, CircularProgress, ListItemIcon, Typography } from "@mui/material";
 import React from "react";
 import DrawerComponent from "../components/DrawerComponent";
 import PadButton from "../components/PadButton";
@@ -28,6 +28,15 @@ function Pads() {
         }
       </Box>
       <Box sx={{ display: "flex", flexWrap: 'wrap', gap: 1, overflow: 'auto', p: 1 }}>
+        {
+          selectedPad.sounds.length === 0 && (
+            <Box sx={{ width: '100%', display: 'flex', justifyContent: 'center' }}>
+              <Typography variant="h6">
+                Este pad não possui sons ainda.
+              </Typography>
+            </Box>
+          )
+        }
         {
           selectedPad.sounds.map((sound, index) => (
             <PadButton key={index} title={sound.title} onClick={() => playSound(sound.source)} />

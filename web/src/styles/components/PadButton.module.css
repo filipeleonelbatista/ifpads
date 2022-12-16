@@ -1,31 +1,106 @@
-.button {
-  width: 128px;
-  height: 128px;
-  border: none;
-  border-radius: 8px;
-  background-color: red;
-  color: black;
-  cursor: pointer;
-  transition: 0.3s;
+/* PC */
+@media (min-width: 720px) {
+  .button {
+    width: 128px;
+    height: 128px;
+    border: none;
+    border-radius: 8px;
+    background-color: red;
+    color: black;
+    cursor: pointer;
+    transition: 0.3s;
+  }
+
+  .buttonFull {
+    width: 100%;
+    height: 128px;
+    border: none;
+    border-radius: 8px;
+    background-color: red;
+    color: black;
+    cursor: pointer;
+    transition: 0.3s;
+  }
+
+  .buttonFull:hover,
+  .button:hover {
+    filter: brightness(0.8);
+  }
+
+  .buttonFull:active,
+  .button:active {
+    filter: brightness(0.7);
+  }
 }
 
-.buttonFull {
-  width: 100%;
-  height: 128px;
-  border: none;
-  border-radius: 8px;
-  background-color: red;
-  color: black;
-  cursor: pointer;
-  transition: 0.3s;
+/* Tablet */
+@media (min-width: 320px) and (max-width: 720px) {
+  .button {
+    width: 50px;
+    height: 50px;
+    border: none;
+    border-radius: 8px;
+    background-color: red;
+    color: black;
+    cursor: pointer;
+    transition: 0.3s;
+  }
+
+  .buttonFull {
+    width: 100%;
+    height: 128px;
+    border: none;
+    border-radius: 8px;
+    background-color: red;
+    color: black;
+    cursor: pointer;
+    transition: 0.3s;
+  }
+
+  .buttonFull:hover,
+  .button:hover {
+    filter: brightness(0.8);
+  }
+
+  .buttonFull:active,
+  .button:active {
+    filter: brightness(0.7);
+  }
+
 }
 
-.buttonFull:hover,
-.button:hover {
-  filter: brightness(0.8);
-}
+/* Celular */
+@media (max-width: 320px) {
+  .button {
+    width: 48px;
+    height: 48px;
+    border: none;
+    border-radius: 8px;
+    background-color: red;
+    color: black;
+    cursor: pointer;
+    transition: 0.3s;
+  }
 
-.buttonFull:active,
-.button:active {
-  filter: brightness(0.7);
+  .buttonFull {
+    width: 100%;
+    height: 128px;
+    border: none;
+    border-radius: 8px;
+    background-color: red;
+    color: black;
+    cursor: pointer;
+    transition: 0.3s;
+  }
+
+  .buttonFull:hover,
+  .button:hover {
+    filter: brightness(0.8);
+  }
+
+  .buttonFull:active,
+  .button:active {
+    filter: brightness(0.7);
+  }
+
 }
