@@ -42,8 +42,8 @@ function Config() {
   const handleShare = async () => {
     try {
       const sharableContent = {
-        title: `Acesse agora o IF Pads na Web em https://ifpads.com.br`,
-        text: `Acesse agora o IF Pads na Web em https://ifpads.com.br`,
+        title: `Acesse agora o IF Pads na Web em https://ifpads.vercel.com`,
+        text: `Acesse agora o IF Pads na Web em https://ifpads.vercel.com`,
       };
       await navigator.share(sharableContent);
     } catch (error) {
