@@ -24,6 +24,9 @@ const links = [
   { title: "Sem live Hayashii", url: "https://semlivedohayashii.vercel.app/" },
   { title: "F DPP", url: "https://temposemdpp.vercel.app/" },
   { title: "IF Pads Android", url: "https://play.google.com/store/apps/details?id=com.ifpads.streamers" },
+  { title: "Reddit da IF", url: "https://www.reddit.com/r/IFFans/new/" },
+  { title: "Twitter da IF", url: "https://twitter.com/InstinctFamily" },
+  { title: "Links dos membros da IF", url: "https://linktr.ee/instinctfamily"},
   { title: "Desenvolvedor", url: "https://desenvolvedordeaplicativos.com.br/links" },
 ]
 
