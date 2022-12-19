@@ -33,6 +33,9 @@ const links = [
   { title: "Reddit da IF", url: "https://www.reddit.com/r/IFFans/new/" },
   { title: "Twitter da IF", url: "https://twitter.com/InstinctFamily" },
   { title: "Links dos membros da IF", url: "https://linktr.ee/instinctfamily" },
+  { title: "Hits Colonais Spotfy", url: "https://open.spotify.com/album/0KCG9r9fxC4LajQQ7l8Pgo" },
+  { title: "Hits Colonais Deezer", url: "https://www.deezer.com/us/album/318576107" },
+  { title: "Hits Colonais YT", url: "https://www.youtube.com/channel/UCqbv-Ctb32oLR9TTCAldWMA" },
   { title: "Desenvolvedor", url: "https://desenvolvedordeaplicativos.com.br/links" },
 ]
 
