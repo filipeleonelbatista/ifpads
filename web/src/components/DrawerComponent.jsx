@@ -137,7 +137,16 @@ function DrawerComponent({ title, children }) {
 
   const [mode, setMode] = React.useState("dark");
   const [open, setOpen] = React.useState(false);
+
   const toggleDrawer = () => {
+
+    console.log("ANALITYCS", "click", {
+      link_id: `menu-${!open ? 'aberto' : 'fechado'}`,
+    })
+    window.gtag('event', 'click', {
+      link_id: `menu-${!open ? 'aberto' : 'fechado'}`,
+    })
+
     setOpen(!open);
   };
 
@@ -223,6 +232,14 @@ function DrawerComponent({ title, children }) {
             </Typography>
             <Tooltip title="Definir Modo Escuro/Claro">
               <IconButton sx={{ ml: 1 }} onClick={() => {
+
+                console.log("ANALITYCS", "click", {
+                  link_id: `${mode === "dark" ? 'light' : 'dark'}-theme`,
+                })
+                window.gtag('event', 'click', {
+                  link_id: `${mode === "dark" ? 'light' : 'dark'}-theme`,
+                })
+
                 setMode(mode === "dark" ? 'light' : 'dark')
                 localStorage.setItem("@dark-theme", mode === "dark" ? 'light' : 'dark')
               }} color="inherit">

@@ -4,7 +4,7 @@ import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import PlayArrowIcon from '@mui/icons-material/PlayArrow';
 import { Accordion, AccordionDetails, AccordionSummary, Avatar, Box, Button, IconButton, TextField, Typography } from "@mui/material";
 import React, { useEffect, useState } from "react";
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import DefaultUserImage from "../assets/images/user.png";
 import ContainerComponent from "../components/ContainerComponent";
 import DrawerComponent from "../components/DrawerComponent";
@@ -47,6 +47,22 @@ export default function MyPad() {
     loadPreset(padList[0])
     navigate("/")
   }
+
+  const location = useLocation();
+
+  useEffect(() => {
+    console.log("ANALITYCS", "page_view", {
+      page_title: 'MyPad',
+      page_path: location.pathname + location.search,
+      page_location: window.location.href
+    })
+    
+    window.gtag('event', 'page_view', {
+      page_title: 'MyPad',
+      page_path: location.pathname + location.search,
+      page_location: window.location.href
+    })
+  }, [location]);
 
   useEffect(() => {
     const getData = async () => {
@@ -180,7 +196,7 @@ export default function MyPad() {
         </Accordion>
 
 
-        <Button fullWidth sx={{mt: 4}} onClick={() => handleOnSave()} size="large" variant="contained">Salvar</Button>
+        <Button fullWidth sx={{ mt: 4 }} onClick={() => handleOnSave()} size="large" variant="contained">Salvar</Button>
       </ContainerComponent>
     </DrawerComponent>
   )

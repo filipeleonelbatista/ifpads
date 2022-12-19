@@ -1,11 +1,11 @@
 
 import { Box, Button, IconButton, Typography } from "@mui/material";
-import React from "react";
+import React, { useEffect } from "react";
 import ContainerComponent from "../components/ContainerComponent";
 import DrawerComponent from "../components/DrawerComponent";
 
 import { FaQrcode, FaShareAlt, FaTwitch, FaVolumeUp } from 'react-icons/fa';
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import PadButton from "../components/PadButton";
 import { useAudio } from "../hooks/useAudio";
 
@@ -29,7 +29,7 @@ const links = [
 
 function Config() {
   const navigate = useNavigate();
-  
+
   const {
     padColor,
     showTiltButton,
@@ -40,6 +40,17 @@ function Config() {
   } = useAudio()
 
   const handleShare = async () => {
+    console.log("ANALITYCS", "click", {
+      link_id: 'share-app',
+      link_url: 'https://ifpads.vercel.com',
+      outbound: true
+    })
+    window.gtag('event', 'click', {
+      link_id: 'share-app',
+      link_url: 'https://ifpads.vercel.com',
+      outbound: true
+    })
+
     try {
       const sharableContent = {
         title: `Acesse agora o IF Pads na Web em https://ifpads.vercel.com`,
@@ -52,6 +63,13 @@ function Config() {
   };
 
   const handlePix = () => {
+    console.log("ANALITYCS", "click", {
+      link_id: 'pix-key',
+    })
+    window.gtag('event', 'click', {
+      link_id: 'pix-key',
+    })
+
     navigator.clipboard.writeText(
       "00020126580014BR.GOV.BCB.PIX013649b3aa64-47eb-47a3-b439-b765a4d0f22c5204000053039865802BR5925FILIPE DE LEONEL BATISTA 6009SAO PAULO61080540900062250521hGjPosyoJ4dswj614vgvd63046514"
     );
@@ -59,6 +77,22 @@ function Config() {
       "Chave Pix Copiada! Agora basta ir no app do seu banco favorito e fazer um pix em qualquer valor 😉 Muito obrigado!"
     );
   };
+
+  const location = useLocation();
+
+  useEffect(() => {
+    console.log("ANALITYCS", "page_view", {
+      page_title: 'Configurações',
+      page_path: location.pathname + location.search,
+      page_location: window.location.href
+    })
+
+    window.gtag('event', 'page_view', {
+      page_title: 'Configurações',
+      page_path: location.pathname + location.search,
+      page_location: window.location.href
+    })
+  }, [location]);
 
   return (
     <DrawerComponent title="Configurações">
@@ -71,7 +105,7 @@ function Config() {
 
             {
               colors.map((color, index) => (
-                <IconButton key={index} onClick={() => handleSetPadColor(color)} variant="contained" sx={{ width: 32, height: 32, backgroundColor: color, border: color === padColor ? 'solid 3px red' : 'solid 1px #000' }}>
+                <IconButton key={index} id={"pad-color-" + color.replace('#', "")} onClick={() => handleSetPadColor(color)} variant="contained" sx={{ width: 32, height: 32, backgroundColor: color, border: color === padColor ? 'solid 3px red' : 'solid 1px #000' }}>
                   {" "}
                 </IconButton>
               ))
@@ -86,7 +120,7 @@ function Config() {
 
             {
               colors.map((color, index) => (
-                <IconButton key={index} onClick={() => handleSetPadTextColor(color)} variant="contained" sx={{ width: 32, height: 32, backgroundColor: color, border: color === padTextColor ? 'solid 3px red' : 'solid 1px #000' }}>
+                <IconButton key={index} id={"pad-text-color-" + color.replace('#', "")} onClick={() => handleSetPadTextColor(color)} variant="contained" sx={{ width: 32, height: 32, backgroundColor: color, border: color === padTextColor ? 'solid 3px red' : 'solid 1px #000' }}>
                   {" "}
                 </IconButton>
               ))
@@ -111,7 +145,19 @@ function Config() {
           <Box sx={{ display: "flex", flexWrap: 'wrap', gap: 1, overflow: 'auto', p: 1, mt: 2 }}>
             {
               links.map((link, index) => (
-                <PadButton key={index} title={link.title} onClick={() => window.open(link.url, "_blank")} />
+                <PadButton key={index} title={link.title} onClick={() => {
+                  console.log("ANALITYCS", "click", {
+                    link_id: link.title.replaceAll(' ', ''),
+                    link_url: link.url,
+                    outbound: true
+                  })
+                  window.gtag('event', 'click', {
+                    link_id: link.title.replaceAll(' ', ''),
+                    link_url: link.url,
+                    outbound: true
+                  })
+                  window.open(link.url, "_blank")
+                }} />
               ))
             }
           </Box>

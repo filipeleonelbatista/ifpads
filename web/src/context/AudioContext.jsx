@@ -18,6 +18,14 @@ export function AudioContextProvider(props) {
   const [isMyPad, setIsMyPad] = useState(true)
 
   const handleChangeTiltState = async () => {
+
+    console.log("ANALITYCS", "click", {
+      link_id: `${!showTiltButton ? "habilitado" : "desabilitado"}-tilt`,
+    })
+    window.gtag('event', 'click', {
+      link_id: `${!showTiltButton ? "habilitado" : "desabilitado"}-tilt`,
+    })
+
     setShowTiltButton(!showTiltButton)
     localStorage.setItem('@showTiltButton', JSON.stringify(!showTiltButton))
   }
@@ -25,6 +33,14 @@ export function AudioContextProvider(props) {
   const playRandomAudio = async () => {
     const selectedIndexPad = Math.floor(Math.random() * pads.length)
     const selectedIndexAudio = Math.floor(Math.random() * pads[selectedIndexPad].sounds.length)
+
+    console.log("ANALITYCS", "click", {
+      link_id: `play-tilt-${pads[selectedIndexPad].userName.replaceAll(' ', '')}-${pads[selectedIndexPad].sounds[selectedIndexAudio].title.replaceAll(' ', '')}`,
+    })
+    window.gtag('event', 'click', {
+      link_id: `play-tilt-${pads[selectedIndexPad].userName.replaceAll(' ', '')}-${pads[selectedIndexPad].sounds[selectedIndexAudio].title.replaceAll(' ', '')}`,
+    })
+
     await playSound(pads[selectedIndexPad].sounds[selectedIndexAudio].source)
   }
 
@@ -33,11 +49,26 @@ export function AudioContextProvider(props) {
     localStorage.setItem('@theme', selectedTema)
   }
   const handleSetPadColor = async (color) => {
+
+    console.log("ANALITYCS", "click", {
+      link_id: `color-${color.replace("#", "")}`,
+    })
+    window.gtag('event', 'click', {
+      link_id: `color-${color.replace("#", "")}`,
+    })
+
     setpadColor(color)
     localStorage.setItem('@color_pad', color)
   }
 
   const handleSetPadTextColor = async (color) => {
+    console.log("ANALITYCS", "click", {
+      link_id: `color-${color.replace("#", "")}`,
+    })
+    window.gtag('event', 'click', {
+      link_id: `color-${color.replace("#", "")}`,
+    })
+
     setpadTextColor(color)
     localStorage.setItem('@color_pad_text', color)
   }
