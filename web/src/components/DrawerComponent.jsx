@@ -3,6 +3,7 @@ import Brightness7Icon from '@mui/icons-material/Brightness7';
 import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
 import MenuIcon from '@mui/icons-material/Menu';
 import SettingsIcon from '@mui/icons-material/Settings';
+import SettingsRemoteIcon from '@mui/icons-material/SettingsRemote';
 import { Avatar, ListItemButton, ListItemIcon, ListItemText, Tooltip, useMediaQuery } from '@mui/material';
 import MuiAppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
@@ -18,9 +19,13 @@ import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import * as React from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
+import DefaultLogo from '../assets/logo.png';
+import { useAuth } from '../hooks/useAuth';
 import PadsListMenu from './PadsListMenu';
 
-import DefaultLogo from '../assets/logo.png'
+import Logout from '@mui/icons-material/Logout';
+import Menu from '@mui/material/Menu';
+import MenuItem from '@mui/material/MenuItem';
 
 function Copyright(props) {
   return (
@@ -132,6 +137,17 @@ const mdThemeDark = createTheme({
 function DrawerComponent({ title, children }) {
   const navigate = useNavigate();
   const location = useLocation();
+
+  const { isLogged, user, handleLogout } = useAuth();
+
+  const [anchorEl, setAnchorEl] = React.useState(null);
+  const openMenu = Boolean(anchorEl);
+  const handleClick = (event) => {
+    setAnchorEl(event.currentTarget);
+  };
+  const handleClose = () => {
+    setAnchorEl(null);
+  };
 
   const prefersDarkMode = useMediaQuery('(prefers-color-scheme: dark)');
 
@@ -246,7 +262,67 @@ function DrawerComponent({ title, children }) {
                 {mode === 'dark' ? <Brightness7Icon /> : <Brightness4Icon />}
               </IconButton>
             </Tooltip>
+            {
+              isLogged && (
+                <Tooltip title={user.login} sx={{ ml: 2 }}>
+                  <IconButton
+                    onClick={handleClick}
+                    size="small"
+                    sx={{ ml: 2 }}
+                    aria-controls={open ? 'user-menu' : undefined}
+                    aria-haspopup="true"
+                    aria-expanded={open ? 'true' : undefined}
+                  >
+                    <Avatar src={user.profile_image_url} alt={user.login} />
+                  </IconButton>
+                </Tooltip>
+              )
+            }
           </Toolbar>
+          {isLogged && (
+            <Menu
+              anchorEl={anchorEl}
+              id="user-menu"
+              open={openMenu}
+              onClose={handleClose}
+              onClick={handleClose}
+              PaperProps={{
+                elevation: 0,
+                sx: {
+                  overflow: 'visible',
+                  filter: 'drop-shadow(0px 2px 8px rgba(0,0,0,0.32))',
+                  mt: 1.5,
+                  '& .MuiAvatar-root': {
+                    width: 32,
+                    height: 32,
+                    ml: -0.5,
+                    mr: 1,
+                  },
+                  '&:before': {
+                    content: '""',
+                    display: 'block',
+                    position: 'absolute',
+                    top: 0,
+                    right: 14,
+                    width: 10,
+                    height: 10,
+                    bgcolor: 'background.paper',
+                    transform: 'translateY(-50%) rotate(45deg)',
+                    zIndex: 0,
+                  },
+                },
+              }}
+              transformOrigin={{ horizontal: 'right', vertical: 'top' }}
+              anchorOrigin={{ horizontal: 'right', vertical: 'bottom' }}
+            >
+              <MenuItem component="button" onClick={handleLogout}>
+                <ListItemIcon >
+                  <Logout fontSize="small" />
+                </ListItemIcon>
+                Sair
+              </MenuItem>
+            </Menu>
+          )}
         </AppBar>
         <Drawer variant="permanent" open={open}>
           <Toolbar
@@ -271,6 +347,21 @@ function DrawerComponent({ title, children }) {
           </Toolbar>
           <Divider />
           <List component="nav" sx={{ height: 'calc(100vh - 64px)', overflowY: 'auto', overflowX: 'hidden' }}>
+            {
+              isLogged && (
+                <>
+                  <Tooltip placement="right" title="Controle remoto">
+                    <ListItemButton selected={location.pathname === "/controle-remoto"} onClick={() => navigate("/controle-remoto")}>
+                      <ListItemIcon>
+                        <SettingsRemoteIcon />
+                      </ListItemIcon>
+                      <ListItemText primary="Controle remoto" />
+                    </ListItemButton>
+                  </Tooltip>
+                  <Divider sx={{ my: 1 }} />
+                </>
+              )
+            }
             <PadsListMenu />
             <Divider sx={{ my: 1 }} />
             <Tooltip placement="right" title="Configurações">

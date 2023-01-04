@@ -5,9 +5,11 @@ import { useLocation } from "react-router-dom";
 import DrawerComponent from "../components/DrawerComponent";
 import PadButton from "../components/PadButton";
 import { useAudio } from "../hooks/useAudio";
+import { useAuth } from "../hooks/useAuth";
 
 function Pads() {
   const { selectedPad, playSound, isMyPad, showTiltButton, playRandomAudio } = useAudio();
+  const { handleSignInTwitch, isLogged } = useAuth();
 
   const location = useLocation();
 
@@ -37,6 +39,34 @@ function Pads() {
 
   return (
     <DrawerComponent title={selectedPad.userName}>
+      {
+        !isLogged && (
+          <Box sx={{ display: "flex", flexWrap: 'wrap', gap: 1, overflow: 'auto', p: 1 }}>
+            <Box onClick={handleSignInTwitch} sx={{
+              display: "flex",
+              width: "100%",
+              p: 4,
+              alignItems: 'center',
+              justifyContent: 'center',
+              fontSize: '14pt',
+              fontWeight: 'bold',
+              border: 'none',
+              backgroundColor: '#6441a5',
+              color: '#FFF',
+              position: 'relative',
+              borderRadius: '4px',
+              cursor: 'pointer',
+              transition: '0.2s',
+              "&:hover": {
+                filter: 'brightness(0.8)',
+              }
+            }} component="button">
+              Faça login com a Twitch e acesse a recursoso exclusivos!
+            </Box>
+          </Box>
+        )
+      }
+
       <Box sx={{ display: "flex", flexWrap: 'wrap', gap: 1, overflow: 'auto', p: 1 }}>
         {
           (isMyPad && showTiltButton) && (

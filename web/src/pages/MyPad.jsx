@@ -56,7 +56,7 @@ export default function MyPad() {
       page_path: location.pathname + location.search,
       page_location: window.location.href
     })
-    
+
     window.gtag('event', 'page_view', {
       page_title: 'MyPad',
       page_path: location.pathname + location.search,

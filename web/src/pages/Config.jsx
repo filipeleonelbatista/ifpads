@@ -8,6 +8,7 @@ import { FaQrcode, FaShareAlt, FaTwitch, FaVolumeUp } from 'react-icons/fa';
 import { useLocation, useNavigate } from "react-router-dom";
 import PadButton from "../components/PadButton";
 import { useAudio } from "../hooks/useAudio";
+import { useAuth } from "../hooks/useAuth";
 
 const colors = [
   "#FFFFFF",
@@ -50,6 +51,8 @@ function Config() {
     padTextColor,
     handleSetPadTextColor,
   } = useAudio()
+
+  const { handleSignInTwitch, isLogged, handleLogout } = useAuth();
 
   const handleShare = async () => {
     console.log("ANALITYCS", "click", {
@@ -144,9 +147,8 @@ function Config() {
           <Button fullWidth onClick={() => handleChangeTiltState()} size="large" variant="contained" color="secondary" startIcon={<FaVolumeUp />}>{showTiltButton ? "Desabilitar Tilt" : "Habilitar Tilt"}</Button>
           <Button fullWidth onClick={handleShare} size="large" variant="contained" color="secondary" startIcon={<FaShareAlt />}>Compartilhe com amigos</Button>
           <Button fullWidth onClick={handlePix} size="large" variant="contained" color="secondary" startIcon={<FaQrcode />}>Me pague um cafésinho!</Button>
-          {
-            false && <Button fullWidth size="large" variant="contained" color="twitch" startIcon={<FaTwitch />}>Habilitar integração com a Twitch</Button>
-          }
+          {!isLogged && <Button fullWidth onClick={handleSignInTwitch} size="large" variant="contained" color="twitch" startIcon={<FaTwitch />}> Faça login com a Twitch e acesse a recursoso exclusivos!</Button>}
+          {isLogged && <Button fullWidth onClick={handleLogout} size="large" variant="contained" color="twitch" startIcon={<FaTwitch />}> Sair</Button>}
         </Box>
 
         <Box sx={{ display: "flex", flexDirection: 'column', mt: 4 }}>

@@ -166,7 +166,7 @@ export function AudioContextProvider(props) {
         showTiltButton,
         playRandomAudio,
         handleChangeTiltState,
-        isMyPad
+        isMyPad,
       }}
     >
       {props.children}
