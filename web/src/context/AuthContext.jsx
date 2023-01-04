@@ -1,6 +1,7 @@
 
 import axios from "axios";
 import { createContext, useEffect, useState } from "react";
+import tmi from 'tmi.js';
 
 export const AuthContext = createContext({});
 
@@ -8,6 +9,31 @@ export function AuthContextProvider(props) {
   const [user, setUser] = useState()
   const [token, setToken] = useState()
   const [isLogged, setIsLogged] = useState(false)
+
+  const sendComand = async (command, channel) => {
+    console.log(command, channel)
+
+    // const client = new tmi.Client({
+    //   connection: {
+    //     reconnect: false,        
+    //   },
+    //   identity: {
+    //     username: user.login,
+    //     password: token.access_token,
+    //   },
+    //   channels: [
+    //     'colonogamer',
+    //     'batera'
+    //   ],
+    // });
+
+    // await client.connect();
+
+    // const connection = await client.say(channel, command)
+    // console.log("Filipe", connection)
+
+    // await client.disconnect();
+  }
 
   const handleLogout = async () => {
     console.log("ANALITYCS", "click", {
@@ -33,7 +59,7 @@ export function AuthContextProvider(props) {
     const force_verify = true;
     const redirect_uri = window.location.origin + "/";
     const response_type = "token";
-    const scope = "user:read:email user:read:follows user:read:subscriptions";
+    const scope = "user:read:email user:read:follows user:read:subscriptions chat:edit chat:read";
 
     const url =
       `https://id.twitch.tv/oauth2/authorize?client_id=${client_id}&force_verify=${force_verify}&redirect_uri=${redirect_uri}&response_type=${response_type}&scope=${encodeURI(scope)}`;
@@ -125,6 +151,7 @@ export function AuthContextProvider(props) {
         isLogged,
         handleSignInTwitch,
         handleLogout,
+        sendComand,
       }}
     >
       {props.children}

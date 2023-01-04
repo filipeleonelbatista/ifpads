@@ -6,6 +6,7 @@ import React, { useEffect, useState } from "react";
 import ContainerComponent from "../components/ContainerComponent";
 import DrawerComponent from "../components/DrawerComponent";
 import PadButton from "../components/PadButton";
+import { useAuth } from "../hooks/useAuth";
 import remoteControls from "../remotecontrol/index";
 
 
@@ -37,6 +38,7 @@ function a11yProps(index) {
 }
 
 function RemoteControl() {
+  const { sendComand } = useAuth()
 
   const [value, setValue] = React.useState(0);
 
@@ -100,7 +102,7 @@ function RemoteControl() {
                   selectedRemoteControl?.commandList?.commands.map((command, index) => (
                     <PadButton
                       key={index}
-                      id={`command-${command}`} title={command} onClick={() => console.log(command)} />
+                      id={`command-${command}`} title={command} onClick={() => sendComand(selectedRemoteControl.name, command)} />
                   ))
                 }
               </Box>
@@ -111,7 +113,7 @@ function RemoteControl() {
                   selectedRemoteControl?.commandList?.audios.map((audio, index) => (
                     <PadButton
                       key={index}
-                      id={`command-audio-${audio}`} title={audio} onClick={() => console.log(audio)} />
+                      id={`command-audio-${audio}`} title={audio} onClick={() => sendComand(selectedRemoteControl.name, audio)} />
                   ))
                 }
               </Box>
