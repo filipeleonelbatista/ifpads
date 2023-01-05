@@ -3,6 +3,7 @@ import { Avatar, Box, IconButton, Typography } from "@mui/material";
 import Tab from '@mui/material/Tab';
 import Tabs from '@mui/material/Tabs';
 import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import ContainerComponent from "../components/ContainerComponent";
 import DrawerComponent from "../components/DrawerComponent";
 import PadButton from "../components/PadButton";
@@ -38,6 +39,7 @@ function a11yProps(index) {
 }
 
 function RemoteControl() {
+  const navigate = useNavigate();
   const { sendCommand, isLogged } = useAuth()
 
   const [value, setValue] = React.useState(0);
@@ -52,6 +54,13 @@ function RemoteControl() {
   useEffect(() => {
     setSelectedRemoteControl(remoteControls[0])
   }, [])
+
+
+  useEffect(() => {
+    if (!isLogged) {
+      return navigate('/')
+    }
+  }, [isLogged])
 
   return (
     <DrawerComponent title="Controle remoto">
