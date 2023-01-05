@@ -6,33 +6,14 @@ import tmi from 'tmi.js';
 export const AuthContext = createContext({});
 
 export function AuthContextProvider(props) {
-  const [user, setUser] = useState()
-  const [token, setToken] = useState()
+  const [tmiClient, setTmiClient] = useState(null)
+  const [user, setUser] = useState(null)
+  const [token, setToken] = useState(null)
   const [isLogged, setIsLogged] = useState(false)
 
   const sendComand = async (command, channel) => {
     console.log(command, channel)
-
-    // const client = new tmi.Client({
-    //   connection: {
-    //     reconnect: false,        
-    //   },
-    //   identity: {
-    //     username: user.login,
-    //     password: token.access_token,
-    //   },
-    //   channels: [
-    //     'colonogamer',
-    //     'batera'
-    //   ],
-    // });
-
-    // await client.connect();
-
-    // const connection = await client.say(channel, command)
-    // console.log("Filipe", connection)
-
-    // await client.disconnect();
+    await tmiClient.say(channel, command)
   }
 
   const handleLogout = async () => {
@@ -89,6 +70,12 @@ export function AuthContextProvider(props) {
   }
 
   useEffect(() => {
+    if (tmiClient !== null) {
+      tmiClient.connect()
+    }
+  }, [tmiClient])
+
+  useEffect(() => {
     const splitted = window.location.hash.replace("#", "&").split("&")
     splitted.shift()
     let values = {}
@@ -114,6 +101,27 @@ export function AuthContextProvider(props) {
         window.location.href.replace(window.location.hash, "").replace("#", "")
         window.location.hash = ""
 
+        const client = new tmi.Client({
+          connection: {
+            reconnect: true,
+          },
+          identity: {
+            username: user.login,
+            password: values.access_token,
+          },
+          channels: [
+            'batera',
+            'colonogamer'
+          ],
+          options: {
+            debug: true,
+            messagesLogLevel: 'warn', // "info, warn, error, fatal"
+            skipUpdatingEmotesets: true
+          }
+        });
+  
+        setTmiClient(client)
+
         setToken(values)
         setUser(user)
         setIsLogged(true)
@@ -133,6 +141,27 @@ export function AuthContextProvider(props) {
           const updateUser = await getUser(values.access_token, validation.login);
 
           localStorage.setItem("@token", JSON.stringify(values))
+
+          const client = new tmi.Client({
+            connection: {
+              reconnect: true,
+            },
+            identity: {
+              username: updateUser.login,
+              password: values.access_token,
+            },
+            channels: [
+              'batera',
+              'colonogamer'
+            ],
+            options: {
+              debug: true,
+              messagesLogLevel: 'warn', // "info, warn, error, fatal"
+              skipUpdatingEmotesets: true
+            }
+          });
+    
+          setTmiClient(client)
 
           setToken(values)
           setUser(updateUser)
