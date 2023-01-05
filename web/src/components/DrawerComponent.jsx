@@ -186,6 +186,7 @@ function DrawerComponent({ title, children }) {
 
       document.onkeydown = function (e) {
 
+        alert("Olha a audácia desse FDP! quer saber sobre o codigo, chama filipeleonelbatista na Twitch")
         // disable F12 key
         if (e.keyCode == 123) {
           return false;
