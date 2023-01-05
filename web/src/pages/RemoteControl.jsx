@@ -10,7 +10,6 @@ import PadButton from "../components/PadButton";
 import { useAuth } from "../hooks/useAuth";
 import remoteControls from "../remotecontrol/index";
 
-
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
 
@@ -40,7 +39,7 @@ function a11yProps(index) {
 
 function RemoteControl() {
   const navigate = useNavigate();
-  const { sendCommand, isLogged } = useAuth()
+  const { sendCommand, isLogged, user } = useAuth()
 
   const [value, setValue] = React.useState(0);
 
@@ -54,7 +53,6 @@ function RemoteControl() {
   useEffect(() => {
     setSelectedRemoteControl(remoteControls[0])
   }, [])
-
 
   useEffect(() => {
     if (!isLogged) {
@@ -72,29 +70,35 @@ function RemoteControl() {
           <Box sx={{ display: 'flex', flexDirection: 'row', gap: 1, pb: 1, flexWrap: 'nowrap', overflow: 'auto' }}>
             {
               remoteControls.map((channel, index) => (
-                <IconButton
-                  key={index}
-                  id={"channel-" + channel.name}
-                  onClick={() => {
-                    console.log("ANALITYCS", "click", {
-                      link_id: "remote-control-channel-" + channel.name,
-                    })
-                    window.gtag('event', 'click', {
-                      link_id: "remote-control-channel-" + channel.name,
-                    })
-                    setSelectedRemoteControl(channel)
-                  }}
-                  variant="contained"
-                  sx={{
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                    width: 50,
-                    height: 50,
-                    border: channel.name === selectedRemoteControl.name ? 'solid 3px red' : ''
-                  }}>
-                  <Avatar src={channel.image} alt={channel.name} />
-                </IconButton>
+                <React.Fragment key={index}>
+                  {
+                    user.follows.includes(channel.name) && (
+                      <IconButton
+                        key={index}
+                        id={"channel-" + channel.name}
+                        onClick={() => {
+                          console.log("ANALITYCS", "click", {
+                            link_id: "remote-control-channel-" + channel.name,
+                          })
+                          window.gtag('event', 'click', {
+                            link_id: "remote-control-channel-" + channel.name,
+                          })
+                          setSelectedRemoteControl(channel)
+                        }}
+                        variant="contained"
+                        sx={{
+                          display: 'flex',
+                          alignItems: 'center',
+                          justifyContent: 'center',
+                          width: 50,
+                          height: 50,
+                          border: channel.name === selectedRemoteControl.name ? 'solid 3px red' : ''
+                        }}>
+                        <Avatar src={channel.image} alt={channel.name} />
+                      </IconButton>
+                    )
+                  }
+                </React.Fragment>
               ))
             }
           </Box>

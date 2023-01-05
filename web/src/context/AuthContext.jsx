@@ -2,6 +2,7 @@
 import axios from "axios";
 import { createContext, useEffect, useState } from "react";
 import tmi from 'tmi.js';
+import remotecontrol from "../remotecontrol";
 
 export const AuthContext = createContext({});
 
@@ -12,7 +13,6 @@ export function AuthContextProvider(props) {
   const [isLogged, setIsLogged] = useState(false)
 
   const sendCommand = async (command, channel) => {
-    console.log(command, channel)
     await tmiClient.say(channel, command)
   }
 
@@ -69,6 +69,28 @@ export function AuthContextProvider(props) {
     return userInfo.data.data[0]
   }
 
+  const checkFollowsIf = async (access_token, from_id) => {
+    const followList = await axios.get(`https://api.twitch.tv/helix/users/follows?from_id=${from_id}`, {
+      headers: {
+        Authorization: 'Bearer ' + access_token,
+        "Client-Id": 'aqy8kovqslooecitbx97ufthpnj9u4'
+      }
+    })
+
+    const channelList = followList.data.data;
+
+    const channelIFFollowed = []
+
+    for (const channel of channelList) {
+      const channelsVerificationArray = remotecontrol.filter(streamControl => streamControl.name === channel.to_login)
+      if (channelsVerificationArray.length > 0) {
+        channelIFFollowed.push(channel.to_login)
+      }
+    }
+
+    return channelIFFollowed
+  }
+
   useEffect(() => {
     if (tmiClient !== null) {
       tmiClient.connect()
@@ -96,6 +118,8 @@ export function AuthContextProvider(props) {
 
         const user = await getUser(values.access_token, validation.login);
 
+        const userFollowedChannels = await checkFollowsIf(values.access_token, user.id);
+
         localStorage.setItem("@token", JSON.stringify(values))
 
         window.location.href.replace(window.location.hash, "").replace("#", "")
@@ -119,11 +143,11 @@ export function AuthContextProvider(props) {
             skipUpdatingEmotesets: true
           }
         });
-  
+
         setTmiClient(client)
 
         setToken(values)
-        setUser(user)
+        setUser({ ...user, follows: userFollowedChannels })
         setIsLogged(true)
 
       } else {
@@ -139,6 +163,8 @@ export function AuthContextProvider(props) {
           }
 
           const updateUser = await getUser(values.access_token, validation.login);
+
+          const userFollowedChannels = await checkFollowsIf(values.access_token, updateUser.id);
 
           localStorage.setItem("@token", JSON.stringify(values))
 
@@ -160,11 +186,11 @@ export function AuthContextProvider(props) {
               skipUpdatingEmotesets: true
             }
           });
-    
+
           setTmiClient(client)
 
           setToken(values)
-          setUser(updateUser)
+          setUser({ ...updateUser, follows: userFollowedChannels })
           setIsLogged(true)
         }
       }
