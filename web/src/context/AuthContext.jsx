@@ -3,6 +3,7 @@ import axios from "axios";
 import { createContext, useEffect, useState } from "react";
 import tmi from 'tmi.js';
 import remotecontrol from "../remotecontrol";
+import colonoBasicoAudio from "../assets/sounds/colono/Basico.mp3"
 
 export const AuthContext = createContext({});
 
@@ -11,6 +12,7 @@ export function AuthContextProvider(props) {
   const [user, setUser] = useState(null)
   const [token, setToken] = useState(null)
   const [isLogged, setIsLogged] = useState(false)
+  const [passedBy, setPassedBy] = useState(false)
 
   const sendCommand = async (command, channel) => {
     await tmiClient.say(channel, command)
@@ -91,112 +93,91 @@ export function AuthContextProvider(props) {
     return channelIFFollowed
   }
 
+  const playAlert = () => {
+    if (confirm("Pô, to pedindo o básico. Dá um follow nos canais dos membros da IF pra acessar o controle remoto!")) {
+      document.getElementById("root").scroll({left:100})
+      const sound = new Audio(colonoBasicoAudio);
+      sound.volume = 0.1;
+      sound.play();
+    }
+  }
+
   useEffect(() => {
     if (tmiClient !== null) {
       tmiClient.connect()
     }
   }, [tmiClient])
 
-  useEffect(() => {
-    const splitted = window.location.hash.replace("#", "&").split("&")
-    splitted.shift()
-    let values = {}
-    for (const variable of splitted) {
-      const xpto = variable.replaceAll("&", "").split("=")
-      values[xpto[0]] = xpto[1]
-    }
+  const handleLoadUser = async () => {
+    const storageToken = localStorage.getItem("@token");
+    if (storageToken && !passedBy) {
+      const values = JSON.parse(storageToken)
+      const validation = await validate(values.access_token);
 
-    const executeAsync = async () => {
-      if (Object.keys(values).length > 0) {
-        values.created_at = Date.now()
-        const validation = await validate(values.access_token);
-
-        if (validation.status === 401) {
-          alert("Sua twitch foi desconectada. Faça login novamente para recuperar o acesso!")
-          return;
-        }
-
-        const user = await getUser(values.access_token, validation.login);
-
-        const userFollowedChannels = await checkFollowsIf(values.access_token, user.id);
-
-        localStorage.setItem("@token", JSON.stringify(values))
-
-        window.location.href.replace(window.location.hash, "").replace("#", "")
-        window.location.hash = ""
-
-        const client = new tmi.Client({
-          connection: {
-            reconnect: true,
-          },
-          identity: {
-            username: user.login,
-            password: values.access_token,
-          },
-          channels: [
-            'batera',
-            'colonogamer'
-          ],
-          options: {
-            debug: true,
-            messagesLogLevel: 'warn', // "info, warn, error, fatal"
-            skipUpdatingEmotesets: true
-          }
-        });
-
-        setTmiClient(client)
-
-        setToken(values)
-        setUser({ ...user, follows: userFollowedChannels })
-        setIsLogged(true)
-
-      } else {
-        const token = localStorage.getItem("@token");
-
-        if (token) {
-          const values = JSON.parse(token)
-          const validation = await validate(values.access_token);
-
-          if (validation.status === 401) {
-            alert("Sua twitch foi desconectada. Faça login novamente para recuperar o acesso!")
-            return;
-          }
-
-          const updateUser = await getUser(values.access_token, validation.login);
-
-          const userFollowedChannels = await checkFollowsIf(values.access_token, updateUser.id);
-
-          localStorage.setItem("@token", JSON.stringify(values))
-
-          const client = new tmi.Client({
-            connection: {
-              reconnect: true,
-            },
-            identity: {
-              username: updateUser.login,
-              password: values.access_token,
-            },
-            channels: [
-              'batera',
-              'colonogamer'
-            ],
-            options: {
-              debug: true,
-              messagesLogLevel: 'warn', // "info, warn, error, fatal"
-              skipUpdatingEmotesets: true
-            }
-          });
-
-          setTmiClient(client)
-
-          setToken(values)
-          setUser({ ...updateUser, follows: userFollowedChannels })
-          setIsLogged(true)
-        }
+      if (validation.status === 401) {
+        alert("Sua twitch foi desconectada. Faça login novamente para recuperar o acesso!")
+        return;
       }
+
+      const user = await getUser(values.access_token, validation.login);
+
+      const userFollowedChannels = await checkFollowsIf(values.access_token, user.id);
+
+      if (userFollowedChannels.length === 0) {
+        playAlert();
+      }
+
+      window.location.href.replace(window.location.hash, "").replace("#", "")
+      window.location.hash = ""
+
+      const client = new tmi.Client({
+        connection: {
+          reconnect: true,
+        },
+        identity: {
+          username: user.login,
+          password: values.access_token,
+        },
+        channels: [
+          'batera',
+          'colonogamer'
+        ],
+        options: {
+          // debug: true,
+          // messagesLogLevel: 'warn', // "info, warn, error, fatal"
+          skipUpdatingEmotesets: true
+        }
+      });
+
+      setTmiClient(client)
+
+      setToken(values)
+      setUser({ ...user, follows: userFollowedChannels })
+      setIsLogged(true)
     }
-    executeAsync();
-  }, []);
+  }
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      if (!passedBy) {
+        const splitted = window.location.hash.replace("#", "&").split("&")
+        splitted.shift()
+        let values = {}
+        for (const variable of splitted) {
+          const xpto = variable.replaceAll("&", "").split("=")
+          values[xpto[0]] = xpto[1]
+        }
+
+        if (Object.keys(values).length > 0) {
+          localStorage.setItem("@token", JSON.stringify(values))
+        }
+
+        handleLoadUser();
+        setPassedBy(true)
+      }
+    }, 300);
+    return () => clearTimeout(timer);
+  }, [passedBy]);
 
   return (
     <AuthContext.Provider
