@@ -7,6 +7,8 @@ export default function PadButton({ id, title, onClick, fullWidth = false, ...re
   const handleClick = (event) => {
     event.preventDefault();
 
+    onClick();
+
     console.log("ANALITYCS", "click", {
       link_id: id.replaceAll(" ", ''),
     })
@@ -14,7 +16,6 @@ export default function PadButton({ id, title, onClick, fullWidth = false, ...re
       link_id: id.replaceAll(" ", ''),
     })
 
-    onClick();
   }
 
   return (

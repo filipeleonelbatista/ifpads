@@ -38,7 +38,7 @@ function a11yProps(index) {
 }
 
 function RemoteControl() {
-  const { sendComand } = useAuth()
+  const { sendCommand, isLogged } = useAuth()
 
   const [value, setValue] = React.useState(0);
 
@@ -102,7 +102,10 @@ function RemoteControl() {
                   selectedRemoteControl?.commandList?.commands.map((command, index) => (
                     <PadButton
                       key={index}
-                      id={`command-${command}`} title={command} onClick={() => sendComand(selectedRemoteControl.name, command)} />
+                      id={`command-${command}`}
+                      title={command}
+                      onClick={() => sendCommand(command, selectedRemoteControl.name)}
+                    />
                   ))
                 }
               </Box>
@@ -113,7 +116,10 @@ function RemoteControl() {
                   selectedRemoteControl?.commandList?.audios.map((audio, index) => (
                     <PadButton
                       key={index}
-                      id={`command-audio-${audio}`} title={audio} onClick={() => sendComand(selectedRemoteControl.name, audio)} />
+                      id={`command-audio-${audio}`}
+                      title={audio}
+                      onClick={() =>
+                        sendCommand(audio, selectedRemoteControl.name)} />
                   ))
                 }
               </Box>

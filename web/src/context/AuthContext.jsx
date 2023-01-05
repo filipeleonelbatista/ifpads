@@ -11,7 +11,7 @@ export function AuthContextProvider(props) {
   const [token, setToken] = useState(null)
   const [isLogged, setIsLogged] = useState(false)
 
-  const sendComand = async (command, channel) => {
+  const sendCommand = async (command, channel) => {
     console.log(command, channel)
     await tmiClient.say(channel, command)
   }
@@ -180,7 +180,7 @@ export function AuthContextProvider(props) {
         isLogged,
         handleSignInTwitch,
         handleLogout,
-        sendComand,
+        sendCommand,
       }}
     >
       {props.children}
