@@ -71,7 +71,10 @@ function RemoteControl() {
                   Para ter acesso aos controles remotos siga os canais da IF
                 </Typography>
                 <Typography variant="caption">
-                  Clica no pad do streamer e clica em follow, após só entrar no site novamente que ja estará liberado.
+                  Clique no pad do streamer e clica em follow, após só entrar no site novamente que ja estará liberado.
+                </Typography>
+                <Typography variant="caption">
+                  Use os audios no contexto correto para não levar ban.
                 </Typography>
                 <Box sx={{ display: 'flex', flexDirection: 'row', gap: 1, pb: 1, flexWrap: 'nowrap', overflow: 'auto' }}>
                   {
