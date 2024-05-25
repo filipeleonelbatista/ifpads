@@ -2,7 +2,7 @@
   <img src="https://raw.githubusercontent.com/filipeleonelbatista/filipeleonelbatista/master/assets/usa_flag.png" width="28px" />
   Version in English
 </a>
-
+</br>
 
 <img width="100%" src=".github/1.png">
 
